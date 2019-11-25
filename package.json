@@ -12,15 +12,16 @@
     "history": "^4.9.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-scripts": "3.2.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "regenerator-runtime": "^0.13.2",
-    "superagent": "^5.1.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "styled-components": "^4.4.1",
+    "superagent": "^5.1.0"
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
