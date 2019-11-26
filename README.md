@@ -18,7 +18,7 @@ In your terminal
 You will create an improved TODO list app step by step.
 From the basic vanilla React example to a fully featured one with routing, global state management, lazy loading and so on.
 
-We can't cover everything of course, but we try to give a good overview of some common ways to build react apps.
+We can't cover everything in this course, but we try to give a good overview of some common ways to build react apps.
 
 ### react
 
