@@ -18,7 +18,17 @@ You need to dynamically display a simple list looking like this simple html:
 
 To do so, here's a few thing you need to achieve :
 
-- First look at the [fetching example](../../examples/users.json) and the [list section](../../examples/react/render/lists.js)
+- First look at the [fetching example](../../examples/users.json), the [list section](../../examples/react/render/lists.js) and the [components section](../../examples/react/components/class.component.js).
 - Then add a constructor and state `{ users: [] }` to the `App.js`
-- Fetch the `users.json` file in the _fixtures_ directory, and set the state with your success response callback
-- Import the `list.component` in the App component from this folder and use instantiate it in the render method with the state passed as props [see passing props](#)
+- Fetch the `users.json` file in the _fixtures_ directory, and set the state with your success response callback in the right lifecycle.
+- Import default the `list.component`  in this folder as `<List />` in the App component and use it in the render method with the state passed as props [see passing props](../../examples/react/props.js)
+
+## Additional resources
+
+If you need more documentation, it is always good to refer to [the official React doc](https://fr.reactjs.org/docs). This exercise mobilizes a few principles:
+
+- lifecycles
+- state and props
+- jsx
+- conditional rendering
+- lists

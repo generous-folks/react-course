@@ -34,9 +34,10 @@ export default class FetchComponent extends Component {
     if(error) {
       return <p>Error Page Component...</p>
     }
+
     return (
       <div>
-        {!pending && items.map(item => (
+        {items.map(item => (
           <div key={item.id}>
             <h4>{item.name}</h4>
             <p>{item.description}</p>
