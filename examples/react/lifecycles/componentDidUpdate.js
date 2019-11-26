@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import request from 'superagent';
 
+// componentDidUpdate is triggered on every re-render, props or state changes
+
 class Component extends React.Component {
   constructor(props) {
     super(props)
@@ -19,11 +21,15 @@ class Component extends React.Component {
   // componentDidUpdate is triggered each time a prop or state value changes.
   // You must be careful to add conditions to prevent infinite loops here
   // For example, we update the state below, causing componentDidUpdate to be triggered again
+  // It is another place for side-effects (fetching, subscriptions and so on)
   async componentDidUpdate(prevProps, prevState) {
+    // The list is not empty and we should not fetch
     if(this.state.list.length !== 0 || !this.props.shouldFetch) {
+      // Return early if we don't want to do anything
       return;
     }
 
+    // Code that will be executed each time the component update
     const list = await request.get("url");
     this.setState({ list })
 
