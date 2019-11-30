@@ -8,9 +8,11 @@ class Component extends React.Component {
     this.state = {
        list: [],
     }
+
+    this.timeoutId = null;
   }
-  // ComponentDidMount is trigger right after components mount,
-  // it's the right place for side effects like data fetching
+  // ComponentDidMount is triggered right after the component mounts,
+  // it's the right place for side effects like data fetching or subscriptions
   async componentDidMount() {
     try {
       const list = await request.get("url");
@@ -18,7 +20,17 @@ class Component extends React.Component {
     } catch (error) {
       throw new Error('failed to fetch')
     }
+
+    this.timeoutId = setTimeout(() => {
+      // do stuff
+    }, 5000)
   }
+
+  // Right place to cancel subscriptions
+  componentWillUnmount() {
+    clearTimeout(this.timeoutId);
+  }
+
 
   render() {
     const { list } = this.state;
