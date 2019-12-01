@@ -1,5 +1,7 @@
 # React
 
+- litle history: https://docs.google.com/presentation/d/18EblrzMWlVFZPLVYVVNvgRKx2j_VEOAd2JAHj8pjxu4/edit?usp=sharing
+
 `A JavaScript library for building user interfaces`
 
 - Composition over Inheritance
