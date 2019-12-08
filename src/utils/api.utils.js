@@ -15,7 +15,7 @@ export const updateArticle = article =>
     .then(res => res.json())
     .catch(err => console.log(err));
 
-export const deleteArticle = article =>
-  fetch(endpoint, { method: 'DELETE', body: article })
+export const deleteArticle = id =>
+  fetch(endpoint, { method: 'DELETE', body: { id } })
     .then(res => res.json())
     .catch(err => console.log(err));
