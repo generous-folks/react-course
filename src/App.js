@@ -1,12 +1,20 @@
 import React from "react";
-import "./App.css";
+import { Switch, Route } from "react-router-dom";
 
-function App() {
+import { Home } from "./pages/home.page";
+
+export default function App() {
   return (
-    <div className="App">
+        <Switch>
+          <Route path="/about">
+            {/* <About /> */}
+          </Route>
+          <Route path="/articles/:id">
 
-    </div>
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
   );
 }
-
-export default App;
