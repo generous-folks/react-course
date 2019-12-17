@@ -23,9 +23,6 @@
       "version": "16.7"
     }
   },
-  "globals": {
-    "ga": false
-  },
   "rules": {
     "object-curly-newline": "off",
     "object-curly-spacing": ["error", "always"],
