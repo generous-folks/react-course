@@ -1,17 +1,16 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "./cart.actions"
-import { removeArticleById } from "./cart.utils"
+import { REQUEST_ARTICLES, RECEIVED_ARTICLES } from "./articles.actions"
 
 export const initialState = {
   articles: []
 }
 
-export const cartReducer = (state, action) => {
+export const articlesReducer = (state, action) => {
   switch (action.type) {
-    case ADD_TO_CART: {
-      return { ...state, articles: [...state.articles, action.article] }
+    case REQUEST_ARTICLES: {
+      return state;
     }
-    case REMOVE_FROM_CART: {
-      return { ...state, articles: removeArticleById(state.articles, action.id) }
+    case RECEIVED_ARTICLES: {
+      return { ...state, articles: [ ...state.articles, ...action.articles ] }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)

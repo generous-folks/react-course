@@ -1,27 +1,53 @@
-import React from 'react'
+import React from 'react';
 
-const CartStateContext = React.createContext()
-const CartDispatchContext = React.createContext()
+import { articlesReducer, initialState } from './articles.reducer';
+import { CHILDREN_PROP_TYPES } from '../../constants/proptypes.constants';
+
+const ArticlesStateContext = React.createContext();
+const ArticlesDispatchContext = React.createContext();
+
+const ArticlesProvider = ({ children }) => {
+  const [state, dispatch] = React.useReducer(articlesReducer, initialState);
+  const dispatchThunk = param => {
+    if (typeof param === 'function') {
+      return param(dispatch);
+    }
+
+    return dispatch(param);
+  }
+
+  return (
+    <ArticlesStateContext.Provider value={state}>
+      <ArticlesDispatchContext.Provider value={dispatchThunk}>
+        {children}
+      </ArticlesDispatchContext.Provider>
+    </ArticlesStateContext.Provider>
+  )
+}
+
+ArticlesProvider.propTypes = {
+  children: CHILDREN_PROP_TYPES,
+}
 
 
-function useCartState() {
-  const context = React.useContext(CartStateContext)
+function useArticlesState() {
+  const context = React.useContext(ArticlesStateContext)
   if (context === undefined) {
-    throw new Error('useCartState must be used within a CartProvider')
+    throw new Error('useArticlesState must be used within a ArticlesProvider')
   }
   return context
 }
 
-function useCartDispatch() {
-  const context = React.useContext(CartDispatchContext)
+function useArticlesDispatch() {
+  const context = React.useContext(ArticlesDispatchContext)
   if (context === undefined) {
-    throw new Error('useCartDispatch must be used within a CartProvider')
+    throw new Error('useArticlesDispatch must be used within a ArticlesProvider')
   }
   return context
 }
 
-function useCart() {
-  return [useCartState(), useCartDispatch()];
+function useArticles() {
+  return [useArticlesState(), useArticlesDispatch()];
 }
 
-export { useCart, useCartState, useCartDispatch }
+export { ArticlesProvider, useArticles, useArticlesState, useArticlesDispatch }

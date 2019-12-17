@@ -1,20 +1,32 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { Home } from "./pages/home.page";
+import { CartProvider } from "./modules/cart/cart.context";
+import { ArticlesProvider } from "./modules/articles/articles.context";
+
+import { HomePage } from "./pages/home.page";
+import { ArticlePage } from "./pages/article.page";
+
 
 export default function App() {
   return (
-        <Switch>
-          <Route path="/about">
-            {/* <About /> */}
-          </Route>
-          <Route path="/articles/:id">
-
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+    <>
+      <Switch>
+        <Route path="/about">
+        </Route>
+      </Switch>
+      <ArticlesProvider>
+        <CartProvider>
+          <Switch>
+            <Route path="/articles/:id">
+              <ArticlePage />
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </CartProvider>
+      </ArticlesProvider>
+    </>
   );
 }

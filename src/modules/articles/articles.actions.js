@@ -1,6 +1,13 @@
-export const ADD_TO_CART = "cart/ADD_TO_CART";
-export const REMOVE_FROM_CART = "cart/REMOVE_FROM_CART";
+import { getArticles } from "../../utils/api.utils";
 
-export const addToCart = article => ({ type: ADD_TO_CART, article });
+export const REQUEST_ARTICLES = "articles/REQUEST_ARTICLES";
+export const RECEIVED_ARTICLES = "articles/RECEIVED_ARTICLES";
 
-export const removeFromCart = id => ({ type: ADD_TO_CART, id });
+
+export const requestArticles = () => async dispatch => {
+  dispatch({ type: REQUEST_ARTICLES });
+
+  const articles = await getArticles();
+
+  dispatch({ type: RECEIVED_ARTICLES, articles });
+}

@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types'
 
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 
 import { makeStyles } from '@material-ui/styles';
+import { CHILDREN_PROP_TYPES } from '../constants/proptypes.constants';
 
 
 const useStyles = makeStyles({
@@ -29,6 +29,6 @@ export const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: CHILDREN_PROP_TYPES,
 }
 
