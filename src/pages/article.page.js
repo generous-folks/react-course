@@ -20,4 +20,4 @@ export const ArticlePage = () => {
       <Article id={id} />
     </Layout>
   )
-}
+};
