@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { cartReducer, initialState } from './cart.reducer';
+
+import { dispatchThunk } from '../../utils/context.utils';
 import { CHILDREN_PROP_TYPES } from '../../constants/proptypes.constants';
 
 const CartStateContext = React.createContext();
@@ -10,7 +12,7 @@ const CartProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState)
   return (
     <CartStateContext.Provider value={state}>
-      <CartDispatchContext.Provider value={dispatch}>
+      <CartDispatchContext.Provider value={dispatchThunk(dispatch)}>
         {children}
       </CartDispatchContext.Provider>
     </CartStateContext.Provider>
