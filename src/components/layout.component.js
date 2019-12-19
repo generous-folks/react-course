@@ -10,7 +10,7 @@ import { CHILDREN_PROP_TYPES } from '../constants/proptypes.constants';
 
 const useStyles = makeStyles({
   container: {
-    marginTop: '100px',
+    marginTop: '2em',
   },
 });
 
