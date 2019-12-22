@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ArticleCard } from './articleCard.component';
-import { useArticlesSelector } from '../articles.hooks';
+import { useArticlesSelector } from '../articles.selectors';
 
 
 export const Article = ({ id }) => {
