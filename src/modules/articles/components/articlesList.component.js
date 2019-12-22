@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { ArticleCard } from './articleCard.component';
 
-import { useArticlesSelector } from '../articles.hooks';
+import { useArticlesSelector } from '../articles.selectors';
 
 
 export function ArticlesList() {
