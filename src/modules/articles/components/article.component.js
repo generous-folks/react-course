@@ -9,7 +9,7 @@ export const Article = ({ id }) => {
   const articles = useArticlesSelector();
   const article = articles.find(item => item.id === id);
 
-  return article ? <ArticleCard { ...article } /> : null;
+  return article ? <ArticleCard article={article} /> : null;
 }
 
 Article.propTypes = {

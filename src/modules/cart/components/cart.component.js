@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Modal } from '../../../components/modal.component';
+import { useCart } from '../cart.context';
 
 const useStyles = makeStyles({
   card: {
@@ -24,9 +25,9 @@ const useStyles = makeStyles({
 export function Cart() {
   const classes = useStyles();
   const [showModal, setShowModal] = React.useState(false);
+  const [{ articles }] = useCart();
 
   const toggleModal = () => setShowModal(!showModal);
-
 
   return (
     <>
@@ -35,9 +36,9 @@ export function Cart() {
           <Typography gutterBottom variant="h5" component="h2">
             Cart
           </Typography>
-          <Typography>
-            some stuff
-          </Typography>
+          {Object.values(articles).map(article => (
+            <Typography key={article.id}>{article.name} - x{article.occurrences || 1}</Typography>
+          ))}
         </CardContent>
         <CardActions>
           <Button onClick={toggleModal} size="small" color="secondary" variant="outlined">
