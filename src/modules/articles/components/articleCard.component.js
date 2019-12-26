@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { addToCart } from '../../cart/cart.actions';
+import { useCart } from '../../cart/cart.context';
 
 const useStyles = makeStyles({
   card: {
@@ -27,8 +29,13 @@ const useStyles = makeStyles({
 });
 
 
-export function ArticleCard({ name, year, id, image }) {
+export function ArticleCard({ article }) {
+  const { name, year, id, image } = article;
   const classes = useStyles();
+  const [,dispatch] = useCart();
+
+  const dispatchAddToCart = () => dispatch(addToCart(article));
+
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -47,7 +54,7 @@ export function ArticleCard({ name, year, id, image }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="secondary" variant="outlined">
+          <Button onClick={dispatchAddToCart} size="small" color="secondary" variant="outlined">
             Add to Cart
           </Button>
           <Button size="small" component={Link} to={`/articles/${id}`} color="primary" variant="outlined">
@@ -60,8 +67,10 @@ export function ArticleCard({ name, year, id, image }) {
 }
 
 ArticleCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  article: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    year: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 }
