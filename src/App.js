@@ -6,6 +6,8 @@ import { ArticlesProvider } from "./modules/articles/articles.context";
 
 import { HomePage } from "./pages/home.page";
 import { ArticlePage } from "./pages/article.page";
+import { AboutPage } from "./pages/about.page";
+import { ContactPage } from "./pages/contact.page";
 
 
 export default function App() {
@@ -13,6 +15,10 @@ export default function App() {
     <>
       <Switch>
         <Route path="/about">
+          <AboutPage />
+        </Route>
+        <Route path="/contact">
+          <ContactPage />
         </Route>
       </Switch>
       <ArticlesProvider>
@@ -21,7 +27,7 @@ export default function App() {
             <Route path="/articles/:id">
               <ArticlePage />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <HomePage />
             </Route>
           </Switch>
