@@ -6,6 +6,7 @@ import Box from '@material-ui/core/Box';
 
 import { Layout } from '../components/layout.component';
 import { Article } from '../modules/articles/components/article.component';
+import { CartLayout } from '../modules/cart/components/cartLayout.component';
 
 
 export const ArticlePage = () => {
@@ -17,7 +18,9 @@ export const ArticlePage = () => {
         <h2>Article {id}</h2>
         <Button component={Link} to="/" color="secondary" variant="outlined">Return to Home</Button>
       </Box>
-      <Article id={id} />
+      <CartLayout>
+        <Article id={id} />
+      </CartLayout>
     </Layout>
   )
 };
