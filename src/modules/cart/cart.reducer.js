@@ -1,5 +1,5 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./cart.actions"
-import { removeArticleById } from "./cart.utils"
+import { removeItemOccurrence } from "./cart.utils"
 
 export const initialState = {
   articles: {},
@@ -21,7 +21,7 @@ export const cartReducer = (state, action) => {
     }
 
     case REMOVE_FROM_CART: {
-      return { ...state, articles: removeArticleById(state.articles, action.id) }
+      return { ...state, articles: removeItemOccurrence(state.articles, action.id) }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
