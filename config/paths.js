@@ -4,6 +4,10 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
+if (!process.argv[2]) {
+  console.error('You must provide the directory of your react app (e.g.: final-version)');
+  process.exit(1);
+}
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebook/create-react-app/issues/637
 const appDirectory = fs.realpathSync(process.cwd());
@@ -63,7 +67,7 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-const currentDirectory = process.env.APP_DIR;
+const currentDirectory = process.env.APP_EXERCISE ? `exercise-${process.argv[2]}` : process.argv[2];
 
 // config after eject: we're in ./config/
 module.exports = {
