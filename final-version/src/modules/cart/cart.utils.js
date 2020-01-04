@@ -1,4 +1,4 @@
-export const removeItemById = (items, id) => Object.keys(items).reduce((acc,curr) => id === curr ? acc : ({ ...acc, [curr]: items[curr]}), {});
+export const removeItemById = (items, id) => Object.keys(items).reduce((acc,curr) => id === curr ? acc : ({ ...acc, [curr]: items[curr] }), {});
 
 export const removeItemOccurrence = (items, id) => {
   const targetItem = Object.values(items).find(item => item.id === id);

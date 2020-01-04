@@ -53,3 +53,12 @@ We can't cover everything in this course, but we try to give a good overview of 
 - Basic global state management usage
 - Middlewares
 - Connected Router
+
+## Workflow
+
+The repository contains a bunch of folders like :
+- __examples__ : samples of everything you need to develop the app and to avoid spending time on stack overflow
+- __theory__ : some important concepts you should know to master this course
+- __final-version__ : a demo, or the actual final version of the app we're aiming to develop.
+- __exercise-X__ : All the exercises folders. We thought it was important to jump from an exercise to another having a corrected version of the previous exercise. It also makes more sense for group learning to always be on an equal state while going further.
+

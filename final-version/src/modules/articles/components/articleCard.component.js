@@ -36,7 +36,6 @@ export function ArticleCard({ article }) {
 
   const dispatchAddToCart = () => dispatch(addToCart(article));
 
-
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.card}>
