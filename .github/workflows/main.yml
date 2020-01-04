@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, macOS-latest]
+        runs-on: [ubuntu-latest]
       fail-fast: false
 
     runs-on: ${{ matrix.runs-on }}
@@ -35,4 +35,3 @@ jobs:
 
     - name: yarn install
       run: cd final-version && yarn
-
