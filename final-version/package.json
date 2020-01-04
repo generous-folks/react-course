@@ -42,10 +42,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --cache src",
-    "format": "prettier-eslint --write '{src,config,scripts,tests}/**/*.js'"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "format": "prettier-eslint --write **src/**/*.js'"
   },
   "browserslist": {
     "production": [

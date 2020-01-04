@@ -68,9 +68,15 @@ export default function NavBar() {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem component={Link} to="/" onClick={handleClose}>Home</MenuItem>
-            <MenuItem component={Link} to="/contact" onClick={handleClose}>Contact</MenuItem>
-            <MenuItem component={Link} to="/about" onClick={handleClose}>About</MenuItem>
+            <MenuItem component={Link} to="/" onClick={handleClose}>
+              Home
+            </MenuItem>
+            <MenuItem component={Link} to="/contact" onClick={handleClose}>
+              Contact
+            </MenuItem>
+            <MenuItem component={Link} to="/about" onClick={handleClose}>
+              About
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>

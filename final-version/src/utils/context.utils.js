@@ -6,20 +6,17 @@ export const dispatchThunk = dispatch => param => {
   }
 
   return dispatch(param);
-}
-
+};
 
 export const useSelector = (
   useReducerHook,
   selector = state => state,
-  {
-    shouldFetch = false,
-    fetchCondition = element => !!element,
-    fetchAction
-  }
+  { shouldFetch = false, fetchCondition = element => !!element, fetchAction },
 ) => {
   if (!useReducerHook) {
-    throw new Error('You need to provide the reducer hook of this resource to get its state and dispatch');
+    throw new Error(
+      'You need to provide the reducer hook of this resource to get its state and dispatch',
+    );
   }
 
   const [state, dispatch] = useReducerHook();
@@ -30,8 +27,7 @@ export const useSelector = (
     if (shouldFetch && fetchCondition(selectedValue) && fetchAction) {
       dispatch(fetchAction());
     }
-  }, [dispatch, selectedValue, shouldFetch, fetchCondition, fetchAction])
+  }, [dispatch, selectedValue, shouldFetch, fetchCondition, fetchAction]);
 
   return selectedValue;
-}
-
+};

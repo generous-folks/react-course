@@ -17,28 +17,27 @@ const ArticlesProvider = ({ children }) => {
         {children}
       </ArticlesDispatchContext.Provider>
     </ArticlesStateContext.Provider>
-  )
+  );
 };
 
 ArticlesProvider.propTypes = {
   children: CHILDREN_PROP_TYPES,
 };
 
-
 function useArticlesState() {
-  const context = React.useContext(ArticlesStateContext)
+  const context = React.useContext(ArticlesStateContext);
   if (context === undefined) {
-    throw new Error('useArticlesState must be used within a ArticlesProvider')
+    throw new Error('useArticlesState must be used within a ArticlesProvider');
   }
-  return context
+  return context;
 }
 
 function useArticlesDispatch() {
-  const context = React.useContext(ArticlesDispatchContext)
+  const context = React.useContext(ArticlesDispatchContext);
   if (context === undefined) {
-    throw new Error('useArticlesDispatch must be used within a ArticlesProvider')
+    throw new Error('useArticlesDispatch must be used within a ArticlesProvider');
   }
-  return context
+  return context;
 }
 
 function useArticles() {

@@ -7,7 +7,6 @@ import NavBar from './navbar.component';
 
 import { CHILDREN_PROP_TYPES } from '../constants/proptypes.constants';
 
-
 const useStyles = makeStyles({
   container: {
     marginTop: '2em',
@@ -19,15 +18,12 @@ export const Layout = ({ children }) => {
 
   return (
     <>
-      <NavBar/>
-      <Container className={classes.container}>
-        {children}
-      </Container>
+      <NavBar />
+      <Container className={classes.container}>{children}</Container>
     </>
-  )
+  );
 };
 
 Layout.propTypes = {
   children: CHILDREN_PROP_TYPES,
 };
-
