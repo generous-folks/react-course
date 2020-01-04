@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 
 export function ArticleCard({ article }) {
-  const { name, year, id, image } = article;
+  const { name, year, id, image, slug } = article;
   const classes = useStyles();
   const [,dispatch] = useCart();
 
@@ -57,7 +57,7 @@ export function ArticleCard({ article }) {
           <Button onClick={dispatchAddToCart} size="small" color="secondary" variant="outlined">
             Add to Cart
           </Button>
-          <Button size="small" component={Link} to={`/articles/${id}`} color="primary" variant="outlined">
+          <Button size="small" component={Link} to={`/articles/${slug}`} color="primary" variant="outlined">
             View
           </Button>
         </CardActions>
