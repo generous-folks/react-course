@@ -9,39 +9,38 @@ const CartStateContext = React.createContext();
 const CartDispatchContext = React.createContext();
 
 const CartProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(cartReducer, initialState)
+  const [state, dispatch] = React.useReducer(cartReducer, initialState);
   return (
     <CartStateContext.Provider value={state}>
       <CartDispatchContext.Provider value={dispatchThunk(dispatch)}>
         {children}
       </CartDispatchContext.Provider>
     </CartStateContext.Provider>
-  )
-}
+  );
+};
 
 CartProvider.propTypes = {
   children: CHILDREN_PROP_TYPES,
-}
-
+};
 
 function useCartState() {
-  const context = React.useContext(CartStateContext)
+  const context = React.useContext(CartStateContext);
   if (context === undefined) {
-    throw new Error('useCartState must be used within a CartProvider')
+    throw new Error('useCartState must be used within a CartProvider');
   }
-  return context
+  return context;
 }
 
 function useCartDispatch() {
-  const context = React.useContext(CartDispatchContext)
+  const context = React.useContext(CartDispatchContext);
   if (context === undefined) {
-    throw new Error('useCartDispatch must be used within a CartProvider')
+    throw new Error('useCartDispatch must be used within a CartProvider');
   }
-  return context
+  return context;
 }
 
 function useCart() {
   return [useCartState(), useCartDispatch()];
 }
 
-export { CartProvider, useCart, useCartState, useCartDispatch }
+export { CartProvider, useCart, useCartState, useCartDispatch };

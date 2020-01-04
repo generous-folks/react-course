@@ -10,24 +10,12 @@
     "serialize-javascript": "2.1.1"
   },
   "dependencies": {
-    "@material-ui/core": "^4.1.2",
-    "@material-ui/icons": "^4.2.1",
-    "@material-ui/styles": "^4.1.2",
-    "classnames": "^2.2.6",
-    "core-js": "^3.1.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.2.0",
-    "regenerator-runtime": "^0.13.2",
-    "styled-components": "^4.4.1",
-    "superagent": "^5.1.0"
+    "react-scripts": "3.2.0"
   },
   "devDependencies": {
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.4",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.3",
@@ -39,9 +27,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

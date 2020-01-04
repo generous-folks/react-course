@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -28,36 +28,34 @@ const useStyles = makeStyles({
   },
 });
 
-
 export function ArticleCard({ article }) {
-  const { name, year, id, image, slug } = article;
+  const { name, year, image, slug } = article;
   const classes = useStyles();
-  const [,dispatch] = useCart();
+  const [, dispatch] = useCart();
 
   const dispatchAddToCart = () => dispatch(addToCart(article));
-
 
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.card}>
-        <CardMedia
-          className={classes.cardMedia}
-          image={image}
-          title={name}
-        />
+        <CardMedia className={classes.cardMedia} image={image} title={name} />
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="h5" component="h2">
-          {name}
+            {name}
           </Typography>
-          <Typography>
-            {year}
-          </Typography>
+          <Typography>{year}</Typography>
         </CardContent>
         <CardActions>
           <Button onClick={dispatchAddToCart} size="small" color="secondary" variant="outlined">
             Add to Cart
           </Button>
-          <Button size="small" component={Link} to={`/articles/${slug}`} color="primary" variant="outlined">
+          <Button
+            size="small"
+            component={Link}
+            to={`/articles/${slug}`}
+            color="primary"
+            variant="outlined"
+          >
             View
           </Button>
         </CardActions>
@@ -72,5 +70,6 @@ ArticleCard.propTypes = {
     year: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
   }).isRequired,
-}
+};

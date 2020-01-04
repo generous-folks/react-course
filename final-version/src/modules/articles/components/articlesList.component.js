@@ -6,7 +6,6 @@ import { ArticleCard } from './articleCard.component';
 
 import { useArticlesSelector } from '../articles.selectors';
 
-
 export function ArticlesList() {
   const articles = useArticlesSelector();
 

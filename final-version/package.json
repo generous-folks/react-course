@@ -25,23 +25,24 @@
     "superagent": "^5.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
+    "eslint": "^6.8.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.3",
-    "prettier": "^1.15.3",
-    "prettier-eslint": "^8.8.2"
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "lint": "eslint --cache src",
+    "format": "prettier-eslint --write **src/**/*.js'"
   },
   "browserslist": {
     "production": [

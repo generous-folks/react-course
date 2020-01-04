@@ -35,10 +35,9 @@ const useStyles = makeStyles({
   listItem: {
     borderBottom: '1px solid lightgray',
     textDecoration: 'none',
-    color: "black",
+    color: 'black',
   },
 });
-
 
 export function Cart() {
   const classes = useStyles();
@@ -58,10 +57,20 @@ export function Cart() {
           </Typography>
           <List aria-label="purchased-items-list">
             {Object.values(articles).map(article => (
-              <ListItem component={Link} to={`/articles/${article.id}`} key={article.id} className={classes.listItem}>
+              <ListItem
+                component={Link}
+                to={`/articles/${article.id}`}
+                key={article.id}
+                className={classes.listItem}
+              >
                 <ListItemText primary={`x${article.occurrences || 1} - ${article.name}`} />
                 <ListItemSecondaryAction>
-                  <IconButton size="small" onClick={removeItemFromList(article.id)} edge="end" aria-label="delete">
+                  <IconButton
+                    size="small"
+                    onClick={removeItemFromList(article.id)}
+                    edge="end"
+                    aria-label="delete"
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -75,11 +84,11 @@ export function Cart() {
           </Button>
         </CardActions>
       </Card>
-      {showModal &&
-        <Modal title="Checkout modal" closeModal={() => setShowModal(false)} >
+      {showModal && (
+        <Modal title="Checkout modal" closeModal={() => setShowModal(false)}>
           <p>checkout</p>
         </Modal>
-      }
+      )}
     </>
   );
 }
