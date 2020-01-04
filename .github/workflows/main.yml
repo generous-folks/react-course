@@ -34,7 +34,7 @@ jobs:
       uses: CultureHQ/actions-yarn@v1.0.1
 
     - name: yarn install
-      run: yarn
+      run: cd final-version && yarn
 
     - name: Lint
-      run: yarn lint
+      run: cd final-version && yarn lint
