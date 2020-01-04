@@ -26,6 +26,8 @@ const useStyles = makeStyles({
     minHeight: '400px',
     display: 'flex',
     flexDirection: 'column',
+    position: 'sticky',
+    top: '20px',
   },
   cardContent: {
     flexGrow: 1,

@@ -7,7 +7,7 @@ import { useArticlesSelector } from '../articles.selectors';
 
 export const Article = ({ id }) => {
   const articles = useArticlesSelector();
-  const article = articles.find(item => item.id === id);
+  const article = articles.find(item => item.slug === id);
 
   return article ? <ArticleCard article={article} /> : null;
 }

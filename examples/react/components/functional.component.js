@@ -15,7 +15,9 @@ const StatelessComponent = ({ something }) => {
 
   // Side effect with unmount callback
   useEffect(() => {
-    return () => {}
+    return () => {
+      // unmount/cleaning logic like "clearInterval(intervalId)"
+    }
   }, []);
 
   return (
