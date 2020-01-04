@@ -36,5 +36,3 @@ jobs:
     - name: yarn install
       run: cd final-version && yarn
 
-    - name: Lint
-      run: cd final-version && yarn lint
