@@ -37,3 +37,6 @@ jobs:
 
       - name: Lint
         run: yarn lint
+
+      - name: Format
+        run: yarn format:dry
