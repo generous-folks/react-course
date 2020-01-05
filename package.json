@@ -93,8 +93,8 @@
     "test": "node scripts/test.js ",
     "test:config": "NODE_ENV=test jest --config=config/jest/config.js",
     "lint": "eslint --cache '**/src/**.*.js'",
-    "format": "prettier-eslint --write '**src/**/*.js'",
-    "format:dry": "prettier-eslint --write '**src/**/*.js' --dry-run"
+    "format": "prettier-eslint --write '**/src/**/*.js'",
+    "format:dry": "prettier-eslint '**/src/**/*.js'"
   },
   "browserslist": {
     "production": [
