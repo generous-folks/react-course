@@ -7,15 +7,17 @@ export const HomePage = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
+    let mounted = true;
     try {
       if (articles.length === 0) {
         getArticles()
-          .then(res => setArticles(res))
+          .then(res => mounted && setArticles(res))
           .catch(err => console.error(err));
       }
     } catch (error) {
       throw new Error(`Fetch articles failed: ${error.message}`);
     }
+    return () => (mounted = false);
   }, [articles]);
 
   return (
