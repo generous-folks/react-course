@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const url = require('url');
 
-if (!process.argv[2]) {
+if (!process.env.NODE_ENV === 'test' && !process.argv[2]) {
   console.error('You must provide the directory of your react app (e.g.: final-version)');
   process.exit(1);
 }
@@ -67,12 +67,12 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-const currentDirectory = process.env.APP_EXERCISE ? `exercise-${process.argv[2]}` : process.argv[2];
+const currentDirectory = (process.env.APP_EXERCISE ? `exercise-${process.argv[2]}` : process.argv[2]) || '.';
 
 // config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
-  appPath: resolveApp('.'),
+  appPath: resolveApp(currentDirectory),
   appBuild: resolveApp(`${currentDirectory}/build`),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
