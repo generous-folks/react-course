@@ -17,7 +17,6 @@
     "core-js": "^3.1.4",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
-    "react-dev-utils": "^9.1.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.0.1",
     "regenerator-runtime": "^0.13.2",
@@ -49,7 +48,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "^3.0.1",
-    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.6.1",
     "file-loader": "3.0.1",
     "fs-extra": "7.0.1",
@@ -74,6 +73,7 @@
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
     "react-app-polyfill": "^1.0.4",
+    "react-dev-utils": "^9.1.0",
     "resolve": "1.12.0",
     "resolve-url-loader": "3.1.0",
     "sass-loader": "7.2.0",
@@ -93,8 +93,8 @@
     "ex": "APP_EXERCISE=true node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test jest --config=config/jest/config.js",
-    "lint": "eslint --cache '**/src/**.*.js'",
-    "format": "prettier-eslint --write '**/src/**/*.js'"
+    "lint": "eslint --cache '**/src/**/*.js'",
+    "format": "prettier-eslint --write $PWD/'**/src/**/*.js'"
   },
   "browserslist": {
     "production": [
@@ -110,19 +110,18 @@
   },
   "jest": {
     "roots": [
-      "<rootDir>/src"
+      "<rootDir>/**/src"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
+      "**/src/**/*.{js,jsx,ts,tsx}"
     ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+      "<rootDir>/**/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/**/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jest-environment-jsdom-fourteen",
     "transform": {
