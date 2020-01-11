@@ -9,15 +9,12 @@ export const HomePage = () => {
 
   useEffect(() => {
     let mounted = true;
-    try {
-      if (articles.length === 0) {
-        getArticles()
-          .then(res => mounted && setArticles(res))
-          .catch(err => console.error(err));
-      }
-    } catch (error) {
-      throw new Error(`Fetch articles failed: ${error.message}`);
+    if (articles.length === 0) {
+      getArticles()
+        .then(res => mounted && setArticles(res))
+        .catch(err => console.error(err));
     }
+
     return () => (mounted = false);
   }, [articles]);
 
