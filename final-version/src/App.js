@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
 import { CartProvider } from './modules/cart/cart.context';
 import { ArticlesProvider } from './modules/articles/articles.context';
@@ -11,7 +11,7 @@ import { ContactPage } from './pages/contact.page';
 
 export default function App() {
   return (
-    <>
+    <Router>
       <Switch>
         <Route path="/about">
           <AboutPage />
@@ -32,6 +32,6 @@ export default function App() {
           </Switch>
         </CartProvider>
       </ArticlesProvider>
-    </>
+    </Router>
   );
 }

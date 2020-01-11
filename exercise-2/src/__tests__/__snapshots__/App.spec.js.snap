@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly 1`] = `
+<div>
+  <h2>
+    Home Page
+  </h2>
+  <div>
+    <h4>
+      Articles
+    </h4>
+    <ul />
+  </div>
+</div>
+`;
