@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getArticles } from './utils/api.utils';
 
-export default function App() {
+const App = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -13,12 +13,21 @@ export default function App() {
   }, [articles]);
 
   return (
-    <div>
-      <h2>Home Page</h2>
-      <div>
-        <h4>Articles</h4>
-        <ul>{articles.length > 0 && articles.map(({ id, name }) => <li key={id}>{name}</li>)}</ul>
+    <div data-testid="app">
+      <h2 data-testid="app-title">Home Page</h2>
+      <div data-testid="articles-container">
+        <h4 data-testid="articles-title">Articles</h4>
+        <ul data-testid="articles-list">
+          {articles.length > 0 &&
+            articles.map(({ id, name }) => (
+              <li data-testid={`article-${id}`} key={id}>
+                {name}
+              </li>
+            ))}
+        </ul>
       </div>
     </div>
   );
-}
+};
+
+export default App;
