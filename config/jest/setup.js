@@ -22,6 +22,4 @@ const mockReactWithHooks = ({ effect = false, state = false, ref = false, memo =
 
 global.mockReactWithHooks = mockReactWithHooks;
 
-Object.assign(window, { fetch: jest.fn(() => Promise.resolve({ json: () => { body: {}} }))} );
-
 Enzyme.configure({ adapter: new Adapter() });
