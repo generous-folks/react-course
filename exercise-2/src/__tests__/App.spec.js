@@ -56,13 +56,4 @@ describe('App', () => {
     expect(setArticles).toHaveBeenCalledWith(MockedArticles);
     expect(setArticles).toHaveBeenCalledTimes(1);
   });
-
-  it('should not call getArticles if articles are already set', () => {
-    // unmock react and clear mocks to test useEffect in real conditions
-    jest.unmock('react');
-    jest.clearAllMocks();
-    getWrapper();
-
-    expect(ApiUtils.getArticles).toHaveBeenCalledTimes(1);
-  });
 });
