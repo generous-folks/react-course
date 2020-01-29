@@ -5,6 +5,18 @@ import 'jest-enzyme';
 import { useEffect, useRef, useState, useMemo, useContext } from '../../__mocks__/react-hooks';
 import React from '../../__mocks__/react';
 
+import getExerciseFromProcess from '../utils';
+
+
+test.runIfEx = (currentExNumber, name, fn) => {
+  if(currentExNumber === getExerciseFromProcess()) {
+    return test(name, fn);
+  }
+
+  return test.skip(name, fn);
+}
+
+
 // Overwrite console.info to disable the following print message
 // "Download the React DevTools for a better development experience"
 console.info = () => {};
