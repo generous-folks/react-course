@@ -25,35 +25,46 @@ beforeEach(() => {
 });
 
 describe('App', () => {
-  it('should render correctly', () => {
-    expect(wrapper).toMatchSnapshot();
+  describe('Snapshot', () => {
+    it('should render correctly', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 
-  it('should contain the correct markup', () => {
-    expect(wrapper.find(`[data-testid='app']`).exists()).toBeTruthy();
-    expect(wrapper.find(`[data-testid='app-title']`).text()).toBe('Home Page');
-    expect(wrapper.find(`[data-testid='articles-container']`).exists()).toBeTruthy();
-    expect(wrapper.find(`[data-testid='articles-title']`).text()).toBe('Articles');
-    expect(wrapper.find(`[data-testid='articles-list']`).exists()).toBeTruthy();
+  describe('Markup checks', () => {
+    it('should contain the correct markup', () => {
+      expect(wrapper.find(`[data-testid='app']`).exists()).toBeTruthy();
+      expect(wrapper.find(`[data-testid='app-title']`).text()).toBe('Home Page');
+      expect(wrapper.find(`[data-testid='articles-container']`).exists()).toBeTruthy();
+      expect(wrapper.find(`[data-testid='articles-title']`).text()).toBe('Articles');
+      expect(wrapper.find(`[data-testid='articles-list']`).exists()).toBeTruthy();
+    });
   });
 
-  it('should call useState with an empty array', () => {
-    expect(useState).toHaveBeenCalledWith(emptyArray);
-    const [initialsArticles] = useState.mock.results[0].value;
-    expect(initialsArticles).toEqual(emptyArray);
+  describe('State checks', () => {
+    // Don't test Jest mocks or React, it is useless
+    // In the following example we test that our react mock is working
+    // const [initialsArticles] = useState.mock.results[0].value;
+    // expect(initialsArticles).toEqual(emptyArray);
+
+    it('should call useState with an empty array', () => {
+      expect(useState).toHaveBeenCalledWith(emptyArray);
+    });
   });
 
-  it('should call useEffect with a function and an empty array', () => {
-    expect(useEffect).toHaveBeenCalledWith(expect.any(Function), [emptyArray]);
-  });
+  describe('Effects checks', () => {
+    it('should call useEffect with a function and an empty array', () => {
+      expect(useEffect).toHaveBeenCalledWith(expect.any(Function), [emptyArray]);
+    });
 
-  it('should call getArticles once', () => {
-    expect(ApiUtils.getArticles).toHaveBeenCalledTimes(1);
-  });
+    it('should call getArticles once', () => {
+      expect(ApiUtils.getArticles).toHaveBeenCalledTimes(1);
+    });
 
-  it('should call setArticles once with MockedArticles', () => {
-    const [, setArticles] = useState.mock.results[0].value;
-    expect(setArticles).toHaveBeenCalledWith(MockedArticles);
-    expect(setArticles).toHaveBeenCalledTimes(1);
+    it('should call setArticles once with MockedArticles', () => {
+      const [, setArticles] = useState.mock.results[0].value;
+      expect(setArticles).toHaveBeenCalledWith(MockedArticles);
+      expect(setArticles).toHaveBeenCalledTimes(1);
+    });
   });
 });
