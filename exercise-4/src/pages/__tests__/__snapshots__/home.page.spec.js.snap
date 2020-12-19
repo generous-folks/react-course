@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App Snapshot should render correctly 1`] = `
-<div
+exports[`<HomePage /> Snapshot should render correctly 1`] = `
+<Layout
   data-testid="app"
 >
   <h2
@@ -21,5 +21,5 @@ exports[`App Snapshot should render correctly 1`] = `
       data-testid="articles-list"
     />
   </div>
-</div>
+</Layout>
 `;

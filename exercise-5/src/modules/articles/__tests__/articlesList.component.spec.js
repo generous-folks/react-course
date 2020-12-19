@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { shallow } from 'enzyme';
 
-import App from '../App';
+import { Grid } from '@material-ui/core';
 
-import MockedArticles from '../../../fixtures/articles.json';
+import { ArticlesList } from '../articlesList.component';
 
-import * as ApiUtils from '../utils/api.utils';
+import MockedArticles from '../../../../../fixtures/articles.json';
+import * as ApiUtils from '../../../utils/api.utils';
 
 let wrapper;
 const emptyArray = [];
@@ -15,7 +16,7 @@ ApiUtils.getArticles = jest.fn().mockResolvedValue(MockedArticles);
 
 jest.mock('react', () => global.mockReactWithHooks({ effect: true, state: true }));
 
-const getWrapper = () => shallow(<App />);
+const getWrapper = () => shallow(<ArticlesList />);
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -24,20 +25,21 @@ beforeEach(() => {
   wrapper = getWrapper();
 });
 
-describe('App', () => {
+describe('<ArticlesList />', () => {
   describe('Snapshot', () => {
     it('should render correctly', () => {
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render list correctly', () => {
+      useState.mockReturnValueOnce([MockedArticles, jest.fn()]);
       expect(wrapper).toMatchSnapshot();
     });
   });
 
   describe('Markup checks', () => {
     it('should contain the correct markup', () => {
-      expect(wrapper.find(`[data-testid='app']`).exists()).toBeTruthy();
-      expect(wrapper.find(`[data-testid='app-title']`).text()).toBe('Home Page');
-      expect(wrapper.find(`[data-testid='articles-container']`).exists()).toBeTruthy();
-      expect(wrapper.find(`[data-testid='articles-title']`).text()).toBe('Articles');
-      expect(wrapper.find(`[data-testid='articles-list']`).exists()).toBeTruthy();
+      expect(wrapper.find(Grid).exists()).toBeTruthy();
     });
   });
 

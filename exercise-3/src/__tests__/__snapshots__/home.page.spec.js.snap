@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App Snapshot should render correctly 1`] = `
+exports[`<HomePage /> Snapshot should render correctly 1`] = `
 <div
   data-testid="app"
 >
@@ -9,6 +9,16 @@ exports[`App Snapshot should render correctly 1`] = `
   >
     Home Page
   </h2>
+  <Link
+    to="/about"
+  >
+    About Page
+  </Link>
+  <Link
+    to="/contact"
+  >
+    Contact Page
+  </Link>
   <div
     data-testid="articles-container"
   >

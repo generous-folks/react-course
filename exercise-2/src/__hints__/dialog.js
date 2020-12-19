@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 function SimpleDialog({ onClose, open, instructions = [] }) {
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Exercise Hints</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Exercise Hints: Add routing</DialogTitle>
       <List>
         {instructions.map((instruction, i) => (
           <ListItem key={i}>

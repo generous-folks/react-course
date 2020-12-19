@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import { shallow } from 'enzyme';
 
-import App from '../App';
+import { HomePage } from '../home.page';
 
-import MockedArticles from '../../../fixtures/articles.json';
+import MockedArticles from '../../../../fixtures/articles.json';
 
-import * as ApiUtils from '../utils/api.utils';
+import * as ApiUtils from '../../utils/api.utils';
 
 let wrapper;
 const emptyArray = [];
@@ -15,7 +15,7 @@ ApiUtils.getArticles = jest.fn().mockResolvedValue(MockedArticles);
 
 jest.mock('react', () => global.mockReactWithHooks({ effect: true, state: true }));
 
-const getWrapper = () => shallow(<App />);
+const getWrapper = () => shallow(<HomePage />);
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -24,7 +24,7 @@ beforeEach(() => {
   wrapper = getWrapper();
 });
 
-describe('App', () => {
+describe('<HomePage />', () => {
   describe('Snapshot', () => {
     it('should render correctly', () => {
       expect(wrapper).toMatchSnapshot();
@@ -33,7 +33,7 @@ describe('App', () => {
 
   describe('Markup checks', () => {
     it('should contain the correct markup', () => {
-      expect(wrapper.find(`[data-testid='app']`).exists()).toBeTruthy();
+      expect(wrapper.find('Layout').exists()).toBeTruthy();
       expect(wrapper.find(`[data-testid='app-title']`).text()).toBe('Home Page');
       expect(wrapper.find(`[data-testid='articles-container']`).exists()).toBeTruthy();
       expect(wrapper.find(`[data-testid='articles-title']`).text()).toBe('Articles');

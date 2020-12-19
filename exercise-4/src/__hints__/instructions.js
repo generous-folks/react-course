@@ -1,3 +1,4 @@
 export const instructions = [
-  `HTML: Create a div > h4, ul > li structure under the app-title. You need to use those data-testid attributes: articles-container, articles title, articles-list, article-$id.`,
+  'Create src/modules/articles/articlesList.component.js and extract the state, effect and the articles markup from the home page, then use ArticlesList inside the home page, everything should look like before',
+  'Create src/modules/articles/articleCard.component.js from the Card MUI example build an ArticleCard getting article={article} as prop (see API /fixtures/articles.json)',
 ];

@@ -8,22 +8,27 @@ export const HomePage = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-    if (articles.length === 0) {
-      getArticles()
-        .then(res => mounted && setArticles(res))
-        .catch(err => console.error(err));
+    if (articles.length !== 0) {
+      return;
     }
-
-    return () => (mounted = false);
+    getArticles()
+      .then(setArticles)
+      .catch(console.error);
   }, [articles]);
 
   return (
-    <Layout>
-      <h2>Home Page</h2>
-      <div>
-        <h4>Articles</h4>
-        <ul>{articles.length > 0 && articles.map(({ id, name }) => <li key={id}>{name}</li>)}</ul>
+    <Layout data-testid="app">
+      <h2 data-testid="app-title">Home Page</h2>
+      <div data-testid="articles-container">
+        <h4 data-testid="articles-title">Articles</h4>
+        <ul data-testid="articles-list">
+          {articles.length > 0 &&
+            articles.map(({ id, name }) => (
+              <li data-testid={`article-${id}`} key={id}>
+                {name}
+              </li>
+            ))}
+        </ul>
       </div>
     </Layout>
   );
