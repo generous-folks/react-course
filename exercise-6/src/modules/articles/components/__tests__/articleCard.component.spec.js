@@ -68,7 +68,7 @@ describe('<ArticleCard />', () => {
           .find(Button)
           .last()
           .text(),
-      ).toBe('Ipsum');
+      ).toBe('See more');
     });
   });
 });
