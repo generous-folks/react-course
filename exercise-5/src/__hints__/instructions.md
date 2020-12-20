@@ -23,9 +23,58 @@ There are no cryptic things, but it can be exhausting at first because actions c
 - You can refer to an action as a function call as it always requires a dispatch call
 - You can refer to an action as a thunk, an function that may perform side effects in addition to be able to dispatch action(s)
 
+```js
+// simplest, straight object
+const duStuffAction = { type: 'foo', payload: 'bar', baz: 'boz' };
+dispatch(doStuffAction);
+
+// Methods that return directly an object works almost the same naturally
+const doStuff = () = ({ type: 'foo', payload: 'bar', baz: 'boz' });
+dispatch(doStuff());
+
+// Also valid
+const doStuff = (dispatch, getState) => {
+  const foo = getFoo(getState());
+  dispatch({ type: 'foo', payload: foo, baz: 'boz'});
+}
+dispatch(doStuff)
+
+// Thunk, it is not necessarily async btw
+const doStuff = () = async dispatch => {
+  const baz = await getBoz()
+  return dispatch({ type: 'foo', payload: 'bar', baz });
+}
+await dispatch(doStuff())
+
+// real world thunk
+const doManyStuffs = () => async (dispatch, getState) => {
+  try {
+    const state = getState();
+    const userId = getUserId(state);
+    const isLoggedIn = isConnected(state);
+
+    dispatch({ type: 'any', foo: isConnected ? 'bar' : 'baz' });
+
+    const anythingResult = await anything();
+    fooBar(anythingResult);
+
+    await dispatch({ type: 'thing'})
+    return dispatch({ type: 'could', happen: true});
+
+  } catch(error) {
+    // handle errors
+    monitorError(error);
+    dispatch({ type: 'again?'});
+  }
+}
+dispatch(doManyStuff())
+```
+
 Create `src/modules/articles/articles.actions.js`
 
-It should export a `requestArticles` function that is a curried function no parameter on first call and async dispatch on second call. The body of the function should be an awaited call to the `getArticles` API utils method and a return statement that calls dispatch with an object with properties "type" set`articles/RECEIVED_ARTICLES`and "articles" set to the result of getArticles
+It should export a `requestArticles` curried function, no parameter on first call and async dispatch on second call.
+The body of the function should be an awaited call to the `getArticles` API utils method.
+The return statement should call dispatch with an object given properties "type" set to `articles/RECEIVED_ARTICLES` and "articles" set to the resolved promise of `getArticles` call.
 
 ### articles.reducer.js
 
@@ -57,7 +106,21 @@ export const someAction = data => (dispatch, getState) => {
 };
 ```
 
-export an initialState { articles: [] } and articlesReducer. Catch the RECEIVED_ARTICLES action type and spread the action articles in the state.
+It should export an **initialState** object
+
+```js
+export const initialState = {
+  articles: [],
+};
+```
+
+It should export an **articlesReducer** method
+
+```js
+export const articlesReducer = () => {};
+```
+
+Catch the **RECEIVED_ARTICLES** action type and spread the action articles payload in the state.
 
 ### articles.context.js
 

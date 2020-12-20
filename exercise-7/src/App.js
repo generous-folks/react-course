@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
+import { CartProvider } from './modules/cart/cart.context';
 import { ArticlesProvider } from './modules/articles/articles.context';
 
 import { HomePage } from './pages/home.page';
@@ -20,14 +21,16 @@ export default function App() {
         </Route>
       </Switch>
       <ArticlesProvider>
-        <Switch>
-          <Route path="/articles/:id">
-            <ArticlePage />
-          </Route>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <CartProvider>
+          <Switch>
+            <Route path="/articles/:id">
+              <ArticlePage />
+            </Route>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </CartProvider>
       </ArticlesProvider>
     </Router>
   );
