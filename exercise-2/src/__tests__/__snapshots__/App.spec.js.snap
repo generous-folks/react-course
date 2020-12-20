@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render correctly 1`] = `
+exports[`App Snapshot should render correctly 1`] = `
 <div
   data-testid="app"
 >
