@@ -5,6 +5,7 @@ export const initialState = {
 };
 
 export const userReducer = (state, action) => {
+  console.log({ action });
   if (action.error) {
     return { ...state, error: action.error };
   }

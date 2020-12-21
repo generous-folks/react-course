@@ -3,13 +3,15 @@ export const LOGOUT = 'user/LOGOUT';
 
 const encryptUserCredentials = () => {};
 const loginAPI = () => Promise.resolve({ id: 'xyz', mail: 'foo@bar.com', name: 'Foo Bar' });
-const getUserId = () => 'xyz';
-const logoutAPI = Promise.resolve;
+const getUser = () => ({ uid: 'xyz' });
+const logoutAPI = args => Promise.resolve(args);
 
 export const login = (email, password) => async dispatch => {
   try {
     const encryptedUser = encryptUserCredentials(email, password);
     const user = await loginAPI(encryptedUser);
+
+    localStorage.setItem('user', JSON.stringify(user));
 
     return dispatch({ type: LOGIN, user });
   } catch (error) {
@@ -19,10 +21,12 @@ export const login = (email, password) => async dispatch => {
 
 export const logout = () => async (dispatch, getState) => {
   try {
-    const userId = getUserId(getState());
-    await logoutAPI(userId);
+    const user = getUser(getState());
+    await logoutAPI(user);
 
-    return dispatch({ type: LOGOUT, id: userId });
+    localStorage.removeItem('user');
+
+    return dispatch({ type: LOGOUT, id: user.id });
   } catch (error) {
     dispatch({ type: LOGOUT, error });
   }
