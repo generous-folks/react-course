@@ -49,5 +49,3 @@ On ADD_TO_CART:
 
 - check if there is an id corresponding to the action.article one, if so, return early by setting the action.article in the articles, using its id as key.
 - Afterwards, it means we have found an existing similar article in the state, so we only need to get its number of occurrences in the state. As we haven't set it on the first article we got in the early return, it means the value of `state.articles[article.id].occurrences` is _undefined_ when you are adding a second occurrence. Only modify the number of occurrences of the matching article in the state.
-
-On REMOVE_FROM_LIST:

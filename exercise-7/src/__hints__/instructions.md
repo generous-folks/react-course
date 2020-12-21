@@ -1,3 +1,3 @@
-# 6/ Sharing state and using HOC
+# 7/ User, a global state example
 
-Let's create the Cart module !
+Let's create the user module !

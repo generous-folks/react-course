@@ -9,6 +9,8 @@ exports[`<HomePage /> Snapshot should render correctly 1`] = `
   >
     Home Page
   </h2>
-  <ArticlesList />
+  <CartLayout>
+    <ArticlesList />
+  </CartLayout>
 </Layout>
 `;

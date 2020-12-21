@@ -41,7 +41,9 @@ export function Cart() {
   const classes = useStyles();
   const [{ articles }, dispatch] = useCart();
 
-  const removeItemFromList = React.useCallback(id => () => dispatch(removeFromCart(id)), []);
+  const removeItemFromList = React.useCallback(id => () => dispatch(removeFromCart(id)), [
+    dispatch,
+  ]);
 
   return (
     <>

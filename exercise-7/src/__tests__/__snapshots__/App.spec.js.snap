@@ -15,19 +15,21 @@ exports[`App should render correctly 1`] = `
     </Route>
   </Switch>
   <ArticlesProvider>
-    <Switch>
-      <Route
-        path="/articles/:id"
-      >
-        <ArticlePage />
-      </Route>
-      <Route
-        exact={true}
-        path="/"
-      >
-        <HomePage />
-      </Route>
-    </Switch>
+    <CartProvider>
+      <Switch>
+        <Route
+          path="/articles/:id"
+        >
+          <ArticlePage />
+        </Route>
+        <Route
+          exact={true}
+          path="/"
+        >
+          <HomePage />
+        </Route>
+      </Switch>
+    </CartProvider>
   </ArticlesProvider>
 </BrowserRouter>
 `;

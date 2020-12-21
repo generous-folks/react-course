@@ -36,7 +36,7 @@ exports[`<ArticleCard /> Snapshot should render correctly 1`] = `
         size="small"
         variant="outlined"
       >
-        Lorem
+        Add to Cart
       </WithStyles(ForwardRef(Button))>
       <WithStyles(ForwardRef(Button))
         color="primary"

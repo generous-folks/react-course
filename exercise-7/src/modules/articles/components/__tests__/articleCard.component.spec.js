@@ -11,7 +11,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { useCart } from '../../../cart/cart.context';
 
+jest.mock('../../../cart/cart.context.js', () => ({
+  useCart: jest.fn().mockReturnValue([null, jest.fn()]),
+}));
 let wrapper;
 
 const article = {
@@ -61,7 +65,7 @@ describe('<ArticleCard />', () => {
           .find(Button)
           .first()
           .text(),
-      ).toBe('Lorem');
+      ).toBe('Add to Cart');
       expect(
         wrapper
           .find(CardActions)
@@ -69,6 +73,12 @@ describe('<ArticleCard />', () => {
           .last()
           .text(),
       ).toBe('See more');
+    });
+  });
+
+  describe('life cycles', () => {
+    it('should call useCart', () => {
+      expect(useCart).toHaveBeenCalled();
     });
   });
 });

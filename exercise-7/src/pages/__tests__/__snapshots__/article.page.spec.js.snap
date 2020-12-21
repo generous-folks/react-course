@@ -19,8 +19,10 @@ exports[`<ArticlePage /> Snapshot should render correctly 1`] = `
       Return to Home
     </WithStyles(ForwardRef(Button))>
   </Styled(MuiBox)>
-  <Article
-    id="foo"
-  />
+  <CartLayout>
+    <Article
+      id="foo"
+    />
+  </CartLayout>
 </Layout>
 `;
