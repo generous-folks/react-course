@@ -6,11 +6,19 @@ exports[`<NavBar /> Snapshot should render correctly 1`] = `
 >
   <WithStyles(ForwardRef(Toolbar))>
     <WithStyles(ForwardRef(Typography))
-      className="makeStyles-title-3"
+      className="makeStyles-title-5"
       variant="h6"
     >
       Shopping App
     </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="logout button"
+      className="makeStyles-menuButton-2 makeStyles-logoutButton-4"
+      edge="start"
+      onClick={[Function]}
+    >
+      <ForwardRef(PowerSettingsNewOutlinedIcon) />
+    </WithStyles(ForwardRef(IconButton))>
     <div>
       <WithStyles(ForwardRef(IconButton))
         aria-controls="menu-appbar"
