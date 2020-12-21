@@ -10,9 +10,10 @@ const CartDispatchContext = React.createContext();
 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(cartReducer, initialState);
+  const getState = React.useCallback(() => state, [state]);
   return (
     <CartStateContext.Provider value={state}>
-      <CartDispatchContext.Provider value={dispatchThunk(dispatch)}>
+      <CartDispatchContext.Provider value={dispatchThunk(dispatch, getState)}>
         {children}
       </CartDispatchContext.Provider>
     </CartStateContext.Provider>

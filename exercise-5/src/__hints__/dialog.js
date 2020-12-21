@@ -41,7 +41,7 @@ export function SeeHints() {
       .then(res => res.text())
       .then(setMarkdownFile)
       .catch(console.error);
-  }, [instructionsMd]);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);

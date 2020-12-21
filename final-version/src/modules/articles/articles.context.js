@@ -10,10 +10,11 @@ const ArticlesDispatchContext = React.createContext();
 
 const ArticlesProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(articlesReducer, initialState);
+  const getState = React.useCallback(() => state, [state]);
 
   return (
     <ArticlesStateContext.Provider value={state}>
-      <ArticlesDispatchContext.Provider value={dispatchThunk(dispatch)}>
+      <ArticlesDispatchContext.Provider value={dispatchThunk(dispatch, getState)}>
         {children}
       </ArticlesDispatchContext.Provider>
     </ArticlesStateContext.Provider>

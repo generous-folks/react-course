@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/styles';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import gfm from 'remark-gfm';
 import instructionsMd from './instructions.md';
 
 const renderers = {
@@ -40,7 +41,7 @@ export function SeeHints() {
       .then(res => res.text())
       .then(setMarkdownFile)
       .catch(console.error);
-  }, [instructionsMd]);
+  }, []);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,12 +59,12 @@ export function SeeHints() {
       <Dialog
         fullWidth
         maxWidth="md"
+        scroll="body"
         onClose={handleClose}
-        aria-labelledby="simple-dialog-title"
         open={open}
         PaperProps={{ className: classes.dialog }}
       >
-        <ReactMarkdown renderers={renderers} children={markdownFile} />
+        <ReactMarkdown plugins={[gfm]} renderers={renderers} children={markdownFile} />
       </Dialog>
     </div>
   );
