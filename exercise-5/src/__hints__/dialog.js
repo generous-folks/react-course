@@ -1,59 +1,47 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react/no-children-prop */
 /* eslint-disable react/prop-types */
 
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import CodeIcon from '@material-ui/icons/Code';
 import { makeStyles } from '@material-ui/styles';
-// import Typography from '@material-ui/core/Typography';
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import gfm from 'remark-gfm';
+import instructionsMd from './instructions.md';
+
+const renderers = {
+  code: ({ language, value }) => {
+    return <SyntaxHighlighter style={vscDarkPlus} language={language} children={value} />;
+  },
+};
 
 const useStyles = makeStyles({
   position: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: 10,
     right: 10,
   },
+  dialog: {
+    maxHeight: 'unset',
+    padding: '2em',
+  },
 });
 
-function SimpleDialog({ onClose, open, instructions = [] }) {
-  return (
-    <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Exercise Hints</DialogTitle>
-      <List>
-        {instructions.map((instruction, i) => (
-          <ListItem key={i}>
-            <ListItemAvatar>
-              <Avatar>
-                <CodeIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={instruction} />
-          </ListItem>
-        ))}
+export function SeeHints() {
+  const [open, setOpen] = React.useState(false);
+  const [markdownFile, setMarkdownFile] = React.useState('');
 
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <CodeIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Something about the exercise you need to know" />
-        </ListItem>
-      </List>
-    </Dialog>
-  );
-}
-
-export function SeeHints({ instructions }) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {
+    fetch(instructionsMd)
+      .then(res => res.text())
+      .then(setMarkdownFile)
+      .catch(console.error);
+  }, [instructionsMd]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -65,17 +53,26 @@ export function SeeHints({ instructions }) {
 
   return (
     <div className={classes.position}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Help
       </Button>
-      <SimpleDialog instructions={instructions} open={open} onClose={handleClose} />
+      <Dialog
+        fullWidth
+        maxWidth="md"
+        scroll="body"
+        onClose={handleClose}
+        open={open}
+        PaperProps={{ className: classes.dialog }}
+      >
+        <ReactMarkdown plugins={[gfm]} renderers={renderers} children={markdownFile} />
+      </Dialog>
     </div>
   );
 }
 
-export const ExerciseContainer = ({ children, instructions }) => (
+export const ExerciseContainer = ({ children }) => (
   <>
     {children}
-    <SeeHints instructions={instructions} />
+    <SeeHints />
   </>
 );
