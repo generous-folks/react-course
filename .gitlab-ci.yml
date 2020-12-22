@@ -12,12 +12,3 @@ test:
     paths:
     - node_modules/
     - .yarn
-
-build:
-  stage: build
-  script:
-      - yarn build
-  cache:
-    paths:
-    - node_modules/
-    - .yarn
