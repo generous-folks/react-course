@@ -54,7 +54,7 @@ export function SeeHints() {
   return (
     <div className={classes.position}>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
-        Help
+        README
       </Button>
       <Dialog
         fullWidth
