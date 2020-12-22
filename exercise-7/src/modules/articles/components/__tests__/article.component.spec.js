@@ -27,8 +27,8 @@ describe('<Article />', () => {
       expect(
         getWrapper(MockedArticles[0].slug)
           .find('ArticleCard')
-          .exists(),
-      ).toBeTruthy();
+          .prop('article'),
+      ).toMatchObject(MockedArticles[0]);
     });
 
     it('should be null when no id is passed', () => {
