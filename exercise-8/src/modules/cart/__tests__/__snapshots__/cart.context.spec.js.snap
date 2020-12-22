@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cart.context <CartProvider /> should render nested providers 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "articles": Object {},
+    }
+  }
+>
+  <ContextProvider
+    value={[Function]}
+  >
+    <div />
+  </ContextProvider>
+</ContextProvider>
+`;

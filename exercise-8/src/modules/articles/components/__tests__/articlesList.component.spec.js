@@ -29,7 +29,14 @@ describe('<ArticlesList />', () => {
 
   describe('Markup checks', () => {
     it('should contain the correct markup', () => {
-      expect(wrapper.find(Grid).exists()).toBeTruthy();
+      expect(wrapper.find(Grid).children()).toHaveLength(MockedArticles.length);
+
+      return expect(
+        wrapper
+          .find(Grid)
+          .children()
+          .map(node => node.prop('article')),
+      ).toMatchObject(MockedArticles);
     });
   });
 });
