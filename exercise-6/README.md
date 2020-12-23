@@ -1,5 +1,16 @@
 # 6/ Sharing state between providers and components
 
+| Create                                              | Modify                                                   |
+| --------------------------------------------------- | -------------------------------------------------------- |
+| src/modules/cart/cart.actions.js                    | src/App.js                                               |
+| src/modules/cart/cart.reducer.js                    | src/pages/home.page.js                                   |
+| src/modules/cart/cart.context.js                    | src/pages/home.page.js                                   |
+| src/modules/cart/cart.selectors.js                  | src/modules/articles/components/articleCard.component.js |
+| src/modules/cart/components/cart.component.js       |
+| src/modules/cart/components/cartLayout.component.js |
+
+## TL;DR
+
 Let's create the Cart module !
 
 We need a Shopping Cart that is fixed and stays with us along our navigation through our incredibly fascinating Shopping App.
@@ -14,15 +25,6 @@ We have two options:
 
 The two solutions are very similar but, in our case, the only thing we need is some reusable jsx across pages, it's a regular Component role to needs, rather than adding logic or interact with props, which would fit more with a HOC.
 
-| Create                                              | Modify                                                   |
-| --------------------------------------------------- | -------------------------------------------------------- |
-| src/modules/cart/cart.actions.js                    | src/App.js                                               |
-| src/modules/cart/cart.reducer.js                    | src/pages/home.page.js                                   |
-| src/modules/cart/cart.context.js                    | src/pages/home.page.js                                   |
-| src/modules/cart/cart.selectors.js                  | src/modules/articles/components/articleCard.component.js |
-| src/modules/cart/components/cart.component.js       |
-| src/modules/cart/components/cartLayout.component.js |
-
 ## Step by step
 
 To begin with, let's duplicate the **articles** modules and rename it cart, it should be pretty step forward to adapt it.
@@ -30,7 +32,7 @@ To begin with, let's duplicate the **articles** modules and rename it cart, it s
 ### src/modules/cart/cart.actions.js
 
 Remove everything from the past articles.
-Create two action creators ADD_TO_CART and REMOVE_FROM_CART
+Create two action creators **ADD_TO_CART** and **REMOVE_FROM_CART**
 Create two simple methods that returns straight object actions. **addToCart** takes `article` as only parameter and returns `article` as property in the action.
 **removeFromCart** takes `article` as only parameter and returns id as property in the action
 

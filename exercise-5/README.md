@@ -9,9 +9,7 @@
 | src/modules/articles/components/article.component.js |
 | src/pages/article.page.js                            |
 
-## Step by step
-
-### articles.actions.js
+## TL;DR
 
 A little introduction on **actions**
 
@@ -69,6 +67,10 @@ const doManyStuffs = () => async (dispatch, getState) => {
 }
 dispatch(doManyStuff())
 ```
+
+## Step by step
+
+### articles.actions.js
 
 Create `src/modules/articles/articles.actions.js`
 
