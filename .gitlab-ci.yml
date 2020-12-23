@@ -10,5 +10,5 @@ test:
       - yarn test
   cache:
     paths:
-    - node_modules/
-    - .yarn
+      - node_modules/
+      - .yarn
