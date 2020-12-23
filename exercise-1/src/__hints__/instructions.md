@@ -32,6 +32,6 @@ HTML desired output
 
 ### App.js
 
-- Fetch the articles: use a combination of useState and useEffect to perform the async call and persist the data`,
+- Fetch the articles: use a combination of useState and useEffect to perform the async call and persist the data. You can import the asynchronous method **getArticles** from the utils folder.
 - Update the JSX: iterate over the articles using .map to display the item title in the `<li data-test-id article-\$id></li>`
 - `yarn test 1`
