@@ -78,7 +78,7 @@ export function SeeHints() {
   const [markdownFile, setMarkdownFile] = React.useState('');
 
   const theme = useTheme();
-  console.log(theme);
+
   const classes = useStyles(theme);
 
   React.useEffect(() => {
