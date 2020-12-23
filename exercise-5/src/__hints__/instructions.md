@@ -1,17 +1,18 @@
 # 5/ Event Driven Design and shared store, the Redux philosophy within React Context
 
-| Create                                               | Modify |
-| ---------------------------------------------------- | ------ |
-| src/modules/articles/articles.actions.js             | App.js |
-| src/modules/articles/articles.reducer.js             |
-| src/modules/articles/articles.context.js             |
-| src/modules/articles/articles.selectors.js           |
-| src/modules/articles/components/article.component.js |
-| src/pages/article.page.js                            |
+| Action | Files                                                         | Exports                                                                |
+| ------ | ------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Move   | src/modules/articles/{->components/}articleCard.component.js  | {ArticleCard}                                                          |
+| Move   | src/modules/articles/{->components/}articlesList.component.js | {ArticlesList}                                                         |
+| Create | src/pages/article.page.js                                     | {ArticlePage}                                                          |
+| Create | src/modules/articles/articles.actions.js                      | {addToCart, removeFromCart, ADD_TO_CART, REMOVE_FROM_CART}             |
+| Create | src/modules/articles/articles.reducer.js                      | {initialState, articlesReducer}                                        |
+| Create | src/modules/articles/articles.context.js                      | {useArticles, useArticlesState, useArticlesDispatch, ArticlesProvider} |
+| Create | src/modules/articles/articles.selectors.js                    | {useArticlesSelector}                                                  |
+| Create | src/modules/articles/components/article.component.js          | {Article}                                                              |
+| Modify | src/App.js                                                    | {App}                                                                  |
 
-## Step by step
-
-### articles.actions.js
+## TL;DR
 
 A little introduction on **actions**
 
@@ -69,6 +70,10 @@ const doManyStuffs = () => async (dispatch, getState) => {
 }
 dispatch(doManyStuff())
 ```
+
+## Step by step
+
+### articles.actions.js
 
 Create `src/modules/articles/articles.actions.js`
 

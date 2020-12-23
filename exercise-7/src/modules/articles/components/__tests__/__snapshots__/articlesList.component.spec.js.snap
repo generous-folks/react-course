@@ -3,7 +3,7 @@
 exports[`<ArticlesList /> Snapshot should render correctly 1`] = `
 <WithStyles(ForwardRef(Grid))
   container={true}
-  spacing={4}
+  spacing={2}
 >
   <ArticleCard
     article={

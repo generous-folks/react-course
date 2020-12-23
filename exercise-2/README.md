@@ -1,10 +1,11 @@
 # 2/ Using react-router-dom to create pages
 
-| Create                    | Modify |
-| ------------------------- | ------ |
-| src/pages/home.page.js    | App.js |
-| src/pages/about.page.js   |
-| src/pages/contact.page.js |
+| Action | Files                     | Exports       |
+| ------ | ------------------------- | ------------- |
+| Create | src/pages/home.page.js    | {HomePage}    |
+| Create | src/pages/about.page.js   | {AboutPage}   |
+| Create | src/pages/contact.page.js | {ContactPage} |
+| Modify | App.js                    | {App}         |
 
 ## TL;DR
 

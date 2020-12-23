@@ -4,7 +4,7 @@ exports[`<Cart /> Snapshot should render correctly with articles 1`] = `
 <WithStyles(ForwardRef(Grid))
   container={true}
   justify="space-between"
-  spacing={8}
+  spacing={4}
 >
   <WithStyles(ForwardRef(Grid))
     item={true}

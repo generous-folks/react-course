@@ -1,46 +1,163 @@
 # 7/ Providers cold shower, a global state struggle
 
-Let's create the user and checkout modules !
+| Action | Files                                                    | Exports                                                |
+| ------ | -------------------------------------------------------- | ------------------------------------------------------ |
+| CREATE | src/modules/user/user.actions.js                         | {login, logout}                                        |
+| CREATE | src/modules/user/user.reducer.js                         | {initialState, userReducer}                            |
+| CREATE | src/modules/user/user.context.js                         | {useUser, useUserState, useUserDispatch, UserProvider} |
+| CREATE | src/modules/user/user.hook.js                            | {usePersistedUser}                                     |
+| CREATE | src/modules/user/user.selectors.js                       | {getUser, isConnectedUser}                             |
+| CREATE | src/modules/user/components/login.component.js           | {Login}                                                |
+| CREATE | src/pages/login.page.js                                  | {LoginPage}                                            |
+| CREATE | src/pages/checkout.page.js                               | {CheckoutPage}                                         |
+| CREATE | src/modules/routing/routing.hooks.js                     | {useLoginRedirect}                                     |
+| CREATE | src/modules/routing/routing.constants.js                 | {ROUTES, PROTECTED_ROUTES}                             |
+| CREATE | src/modules/routing/components/routes.component.js       | {AppRoutes}                                            |
+| MODIFY | src/App.js                                               | {App}                                                  |
+| MODIFY | src/modules/articles/components/articleCard.component.js | {ArticleCard}                                          |
 
-We need a Checkout page that needs a logged in user. So we also need a Login page.
+## TL;DR
+
+It's raining modules, let's create the user, checkout and routing ones !
+
+We need a Checkout page but the user must be logged in to access it. So we also need a Login page.
 We'll mock the user api and authentication process for now.
-We need to bo redirected to the login page on some routes, not all.
-We need
-
-| Create                                              | Modify                                                   |
-| --------------------------------------------------- | -------------------------------------------------------- |
-| src/modules/cart/cart.actions.js                    | src/App.js                                               |
-| src/modules/cart/cart.reducer.js                    | src/pages/home.page.js                                   |
-| src/modules/cart/cart.context.js                    | src/pages/home.page.js                                   |
-| src/modules/cart/cart.selectors.js                  | src/modules/articles/components/articleCard.component.js |
-| src/modules/cart/components/cart.component.js       |
-| src/modules/cart/components/cartLayout.component.js |
+We need to be redirected to the login page but only from the checkout page.
 
 ## Step by step
 
-To begin with, let's duplicate the **articles** modules and rename it cart, it should be pretty step forward to adapt it.
+To begin with, let's duplicate the **articles** modules and rename it user, it should be pretty step forward to adapt it.
 
-### src/modules/cart/cart.actions.js
+### src/modules/user/user.actions.js
 
-Remove everything from the past articles.
-Create two action creators ADD_TO_CART and REMOVE_FROM_CART
-Create two simple methods that returns straight object actions. **addToCart** takes `article` as only parameter and returns `article` as property in the action.
-**removeFromCart** takes `article` as only parameter and returns id as property in the action
+#### login
 
-### src/modules/cart/cart.reducer.js
+We need a **login** action creator, a thunk in this case.
 
-A Shopping Cart is nothing too ambitious to build but you need at least increment and decrement actions on the shopping items. You need to report those actions two actual data storage/update in the state.
-You could be tempted to think of it as a list, an array you'd map around to display some `<li></li>`. You could push and slice, why not.
-But, while this is possible, this would demand a lot of calculations at each update and won't be very readable.
+```js
+/**
+ *
+ * @param {string} email
+ * @param {string} password
+ */
+export const login = (email, password) => async dispatch => {};
+```
 
-An object _Map_ suits better our needs, we can increment and decrement the article occurrences by attaching a property `occurrences` to it in the state.
+You need to:
 
-Create and export the initial state `{ articles: {}}`
-Catch the two actions created in cart.actions
+- await a call from **signIn** API method with **email** and **password** as parameters to get the user value.
+- Set the user in the localStorage under the key "user"
+- return dispatch the **LOGIN** action
 
-On ADD_TO_CART:
+#### logout
 
-- check if there is an id corresponding to the action.article one, if so, return early by setting the action.article in the articles, using its id as key.
-- Afterwards, it means we have found an existing similar article in the state, so we only need to get its number of occurrences in the state. As we haven't set it on the first article we got in the early return, it means the value of `state.articles[article.id].occurrences` is _undefined_ when you are adding a second occurrence. Only modify the number of occurrences of the matching article in the state.
+```js
+export const logout = () => async (dispatch, getState) => {};
+```
 
-On REMOVE_FROM_LIST:
+You need to:
+
+- get the user value from the store using the **getUser** selector and **getState**
+- call the **signOut** methods othe the API
+- Remove the user from the localStorage
+- return dispatch the **LOGOUT** action with user as property
+
+### src/modules/user/user.reducer.js
+
+Super dummy reducer !
+
+#### LOGIN
+
+Catch the action **LOGIN** and set user in the state from the **action.user** property
+
+#### LOGOUT
+
+Catch the action **LOGOUT** and set user in the state to **null**
+
+### src/modules/user/user.hooks.js
+
+#### usePersistedUser
+
+Dummy hook !
+
+Returns the **user** from _localStorage_
+
+### src/modules/user/user.selectors.js
+
+#### isUserConnected
+
+Takes the user context state as parameter and returns a boolean wether it is truthy or not.
+
+#### getUser
+
+Takes the user context state as parameter and returns the user entry from it.
+
+### src/hooks/useInput.hooks.js
+
+#### useInput
+
+Create a stateful hook that returns the state value (input) and an **onChange** handler.
+Basically you would use a control input this way
+
+```js
+export const MyForm = () => {
+  // input type text expects a string
+  const [inputValue, setInputValue] = useState('');
+
+  const onChange = event => setInputValue(event.target.value);
+  ...
+};
+```
+
+### src/modules/user/components/login.component.js
+
+#### Login
+
+- Get dispatch from user context
+- Integrate two **useInput** to control _email_ and _password_ TextFields
+- Create a submit handler for the form that dispatch the **login action** with the **email** and **password**
+
+### src/pages/login.page.js
+
+#### LoginPage
+
+- Create a classic page and add the **Login** component under the habitual layout.
+
+### src/modules/routing/routing.constants.js
+
+Let's do a clean enum for our routes and for our protected routes.
+
+#### ROUTES
+
+Create an enum of _routePathsByNames_
+
+:warning: The routes exhaustiveness is tested !
+
+```js
+export const ROUTES = {
+  foo: '/foo',
+};
+```
+
+#### PROTECTED_ROUTES
+
+Create an enum of _routePathsByNames_
+
+:warning: The routes exhaustiveness is tested !
+
+```js
+export const PROTECTED_ROUTES = [ROUTES.checkout];
+```
+
+### src/modules/routing/routing.hooks.js
+
+#### useLoginRedirect
+
+The main course of this exercise !
+You need to figure out how to redirect the user whenever he is not logged in when he tries to access the checkout page.
+
+You'll need to use `react-router-dom` **useLocation** for `pathname` checks and **useHistory** to get the `push` method.
+
+This hook will only perform side effects, it will not return any value. It will use state and useEffects.
+
+Good luck.

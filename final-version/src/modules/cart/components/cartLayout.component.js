@@ -6,7 +6,7 @@ import { Cart } from './cart.component';
 
 export function CartLayout({ children }) {
   return (
-    <Grid container spacing={8} justify="space-between">
+    <Grid container spacing={4} justify="space-between">
       <Grid item xs={12} sm={8} md={8}>
         {children}
       </Grid>

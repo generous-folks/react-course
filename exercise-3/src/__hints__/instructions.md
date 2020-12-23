@@ -1,9 +1,12 @@
 # 3/ Wrapping pages, building layout with Material-UI
 
-| Create                             | Modify |
-| ---------------------------------- | ------ |
-| src/components/layout.component.js | App.js |
-| src/pages/contact.page.js          |
+| Action | Files                              | Exports       |
+| ------ | ---------------------------------- | ------------- |
+| Create | src/components/layout.component.js | {Layout}      |
+| Modify | src/pages/contact.page.js          | {ContactPage} |
+| Modify | src/pages/about.page.js            | {AboutPage}   |
+| Modify | src/pages/home.page.js             | {HomePage}    |
+| Modify | src/App.js                         | {App}         |
 
 ## TL;DR
 

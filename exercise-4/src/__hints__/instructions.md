@@ -1,9 +1,10 @@
 # 4/ Component composition, modules architecture, understanding responsibility
 
-| Create                             | Modify |
-| ---------------------------------- | ------ |
-| src/components/layout.component.js | App.js |
-| src/pages/contact.page.js          |
+| Action | Files                                          | Exports        |
+| ------ | ---------------------------------------------- | -------------- |
+| Create | src/modules/articles/articleCard.component.js  | {ArticleCard}  |
+| Create | src/modules/articles/articlesList.component.js | {ArticlesList} |
+| Modify | src/pages/home.page.js                         | {HomePage}     |
 
 ## TL;DR
 
@@ -18,8 +19,14 @@ It doesn't feel "react" to have our home page holding the articles **fetching an
 
 ## Step by step
 
-- Create `src/modules/articles/articlesList.component.js` that exports a function `ArticlesList`. Then extract the state, effect and the articles markup from the home page to your `ArticlesList`. Use `ArticlesList` inside the home page and everything should look like before.
+### src/modules/articles/articlesList.component.js
 
----
+#### ArticlesList
 
-- Create `src/modules/articles/articleCard.component.js` from the Card MUI example, ArticleCard will get article={article} as prop (see API /fixtures/articles.json). Then replace the html markup by the ArticleCard in the ArticlesList
+Create `src/modules/articles/articlesList.component.js` that exports a function `ArticlesList`. Then extract the state, effect and the articles markup from the home page to your `ArticlesList`. Use `ArticlesList` inside the home page and everything should look like before.
+
+### src/modules/articles/articleCard.component.js
+
+#### ArticleCard
+
+Create `src/modules/articles/articleCard.component.js` from the Card MUI example, ArticleCard will get article={article} as prop (see API /fixtures/articles.json). Then replace the html markup by the ArticleCard in the ArticlesList

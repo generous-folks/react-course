@@ -1,5 +1,4 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from './cart.actions';
-import { removeItemOccurrence } from './cart.utils';
 
 export const initialState = {
   articles: {},
@@ -27,8 +26,29 @@ export const cartReducer = (state, action) => {
     }
 
     case REMOVE_FROM_CART: {
-      // We apply some magic function and voila, one article removed.
-      return { ...state, articles: removeItemOccurrence(state.articles, action.id) };
+      const targetArticle = Object.values(state.articles).find(article => article.id === action.id);
+      const targetOccurrences = targetArticle.occurrences;
+      const isNumber = typeof targetOccurrences === 'number';
+      const isSuperiorToOne = targetOccurrences > 1;
+      const shouldDecrement = isNumber && isSuperiorToOne;
+
+      if (shouldDecrement) {
+        return {
+          ...state,
+          articles: {
+            ...state.articles,
+            [action.id]: { ...targetArticle, occurrences: targetOccurrences - 1 },
+          },
+        };
+      }
+
+      return {
+        ...state,
+        articles: Object.keys(state.articles).reduce(
+          (acc, curr) => (action.id === curr ? acc : { ...acc, [curr]: state.articles[curr] }),
+          {},
+        ),
+      };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

@@ -1,3 +1,3 @@
-export const useStoredUser = () => {
+export const usePersistedUser = () => {
   return localStorage.getItem('user');
 };
