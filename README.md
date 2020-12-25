@@ -3,7 +3,20 @@
 ## Requirements
 
 - Yarn
-- Node >=10.13
+- Node >=12
+
+### Knowledge Prerequisites
+
+- Visual Studio Code and Live share plugin installed, alongside prettier and eslint
+
+- Knowing the basics of React, having already done something basic like a to do list. [See Documentation](https://reactjs.org/)
+
+- Being familiar with JS Native Objects and their methods (Array, String, Object, Number, Boolean) [See Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
+
+- Having notions of destructuring, spreading, currying, functional programming, immutability is a huge plus.
+
+- Read **Kent C. Dodds** articles [Application state management](https://kentcdodds.com/blog/application-state-management-with-react)
+  and [How to use Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
 
 ## Getting Started
 
@@ -21,8 +34,8 @@ Start the app :
 ## What you'll learn
 
 You will create a simple shopping app step by step.
-From the basic vanilla React example to a fully featured one with routing, global state management, lazy loading and so on.
-It consists on a shared layout, a list of products, a product page and a shopping cart mostly.
+From the basic vanilla React example to a nicely featured one with routing, global state management, lazy loading and so on.
+It consists on a shared layout, a list of products, a product page, a shopping cart and a checkout form mostly.
 
 We can't cover everything in this course, but we try to give a good overview of some common ways to build react apps.
 
@@ -32,11 +45,10 @@ We can't cover everything in this course, but we try to give a good overview of 
 - Using Class and Functional components
 - Managing state and props
 - PropTypes checking
-- Understanding lifecycles
+- Understanding components life cycles
 - Context API
 - Using hooks
-- Code splitting and lazy loading
-- Architecture and code design
+- Architecture and good practices
 
 ### react-router
 
@@ -119,16 +131,13 @@ What is this component role ? Should it display something ? Ok then, that's the 
 - Prefer using the state setter callback to access the state current value in your effects. Return the current value in case you shouldn't update the state, it will do nothing.
 
 ```js
-// Reference will never change
-const getSomeNewValue = () => {};
-
-export const Component = () => {
-  const [value, setValue] = useState(null);
+export const Counter = ({ changingProp }) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const data = getSomeNewValue();
-    setValue(currentValue => (currentValue === null ? data : currentValue));
-  }, [getSomeNewValue, setValue]);
+    // if count were included to do the addition, we'll get an infinite loop
+    setCount(currentCount => currentCount + 1);
+  }, [changingProp]);
 };
 ```
 
@@ -137,8 +146,9 @@ export const Component = () => {
 Anonymous Objects, Functions, whatever, are bad. Always use constants for almost everything: strings, objects and functions. Generally create any object or function outside the scope of the component. If you must, then memoize them with useCallback and useMemo. Doing something like the following could lead to dramatic events :
 
 ```js
+// BAD
 const Component = (props) => {
-  // imagine some other props and state that makes it re-renders...
+  // imagine some props or state that makes it re-renders...
   // until props.bar is defined, the reference of foo will change because on each re-render a new object is created
   const foo = props.bar || {};
 
@@ -149,6 +159,7 @@ const Component = (props) => {
 Instead do
 
 ```js
+// GOOD
 const emptyFoo = {};
 
 const Component = (props) => {
@@ -161,22 +172,9 @@ const Component = (props) => {
 
 While effects dependencies allow to detect changes between updates and trigger the effect consequently, react does only update on props and state change. If your value is mutated after a re-render, or before, you might not get the expected behavior. Embrace immutability the most you can.
 
-- Hard to grasp redux but it feels very natural after you clearly visualize each piece and its underlying mechanics. Everything fits together.
+- Learn redux, hard to grasp at first but it feels very natural after you clearly visualize each piece and its underlying mechanics. Everything fits together.
 
 - Whatever I say, react was thought to let you free in implementation details choices
-
-### Prerequisites
-
-- Visual Studio Code and Live share plugin installed, alongside prettier and eslint
-
-- Knowing the basics of React, having already done something basic like a to do list. [See Documentation](https://reactjs.org/)
-
-- Being familiar with JS Native Objects and their methods (Array, String, Object, Number, Boolean) [See Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
-
-- Having notions of destructuring, spreading, currying, functional programming, immutability is a huge plus.
-
-- Read **Kent C. Dodds** articles [Application state management](https://kentcdodds.com/blog/application-state-management-with-react)
-  and [How to use Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
 
 ### Ideas for remote groups learning
 

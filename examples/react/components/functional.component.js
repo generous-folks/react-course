@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
+const someSideEffectFunction = () => {};
 
-const StatelessComponent = ({ something }) => {
+export const StatelessComponent = ({ something }) => {
   const someCustomField = true;
   const someOtherCustomField = something;
 
@@ -17,15 +18,11 @@ const StatelessComponent = ({ something }) => {
   useEffect(() => {
     return () => {
       // unmount/cleaning logic like "clearInterval(intervalId)"
-    }
+    };
   }, []);
 
-  return (
-    <div>
-
-    </div>
-  )
-}
+  return <div></div>;
+};
 
 // A Component is just a function getting an optional props object as parameter and returning jsx.
 // Furthermore you shouldn't add any logic, side effects or state if you don't really need it.
@@ -35,25 +32,25 @@ const ShorterStatelessComponent = ({ something }) => <div>{something}</div>;
 React.memo(StatefulComponent, (prevProps, prevState) => true);
 
 // Creating component as Function(props) {} is the same as const Component = props => {}
-function StatefulComponent({ something }) {
+export function StatefulComponent({ something }) {
   const [someState, setSomeState] = useState(false);
   const someCustomField = true;
-  const someOtherCustomField = something;
-
-  useEffect(() => {}, []);
-
-  useEffect(() => {});
 
   useEffect(() => {
-    return () => {}
+    if (something) {
+      setSomeState(true);
+    }
+  }, [something]);
+
+  useEffect(() => {
+    someSideEffectFunction();
+  }, [someState]);
+
+  useEffect(() => {
+    return () => {};
   }, []);
 
-  return (
-    <div>
-
-    </div>
-  )
+  return <div></div>;
 }
 
 React.memo(StatefulComponent, (prevProps, prevState) => true);
-
