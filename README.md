@@ -72,58 +72,43 @@ The repository contains a bunch of folders like :
 
 #### 1/ Fetching, persisting data locally and list rendering
 
-- Build the JSX: Create a div > h4, ul > li structure under the app-title. You need to use those data-testid attributes: articles-container, articles-title, articles-list, article-\$id. See snapshot for help
-- Fetch the articles: use a combination of useState and useEffect to perform the async call and persist the data`,
-- Update the JSX: iterate over the articles using .map to display the item title in the `<li data-test-id article-\$id></li>`
-- `yarn test 1`
+See [instructions](./exercise-1/src/__hints__/instructions.md)
 
 #### 2/ Using react-router-dom to create pages
 
-- Create a "pages" directory, with the files {home,about,contact}.page.js
-- In about and contact files create a div with a h2 and a react-router-dom Link to /
-- In home.page, copy everything from App.js and add two Links to about and contact page under the h2
+See [instructions](./exercise-2/src/__hints__/instructions.md)
 
 #### 3/ Wrapping pages, building layout with Material-UI
 
-- Create a "components" directory, with the file navbar.component.js from material-ui examples
-- Add a layout.component.js to the "components" directory, it will only return a Fragment holding the Navbar and a Material-UI container rendering children props as siblings
-- In each page component, replace the div parent with the Layout Component, it is the pages container
-- In about and contact pages, add a Material-UI Box component to wrap the h2 and the Link. Use a MUI Button component={Link} instead of the simple Link
+See [instructions](./exercise-3/src/__hints__/instructions.md)
 
 #### 4/ Component composition, modules architecture, understanding responsibility
 
-- Create `src/modules/articles/articlesList.component.js` and extract the state, effect and the articles markup from the home page, then use ArticlesList inside the home page, everything should look like before
-- Create `src/modules/articles/articleCard.component.js` from the Card MUI example, ArticleCard will get article={article} as prop (see API /fixtures/articles.json). Then replace the html markup by the ArticleCard in the ArticlesList
+See [instructions](./exercise-4/src/__hints__/instructions.md)
 
 #### 5/ Event Driven Design and shared store, the Redux philosophy within React Context
 
-- Create `src/modules/articles/articles.actions.js`, it should export a `requestArticles` function that is a curried function no parameter on first call and async dispatch on second call. The body of the function should be an awaited call to the `getArticles` API utils method and a return statement that calls dispatch with an object with properties "type" set`articles/RECEIVED_ARTICLES`and "articles" set to the result of getArticles
-- Create `src/modules/articles/articles.reducer.js`, export an initialState { articles: [] } and articlesReducer. Catch the RECEIVED_ARTICLES action type and spread the action articles in the state.
-- Create `src/modules/articles/articles.context.js`
-  Basically copy [This snippet](https://kentcdodds.com/blog/how-to-use-react-context-effectively#conclusion), our reducer/context implementation is based on it
-- Create `src/modules/articles/articles.selectors.js`. In redux a selector is a function taking the state as parameter and returning a value from it, in our case something like:
+See [instructions](./exercise-5/src/__hints__/instructions.md)
 
-```js
-const getArticlesSelector = state => state.articles;
+#### 6/
 
-const ArticlesList = () => {
-  const articles = getArticlesSelector(useArticlesState());
-};
+See [instructions](./exercise-6/src/__hints__/instructions.md)
 
-// This could be implemented
-const ArticlesList = () => {
-  const articles = useArticlesStateWithSelector(getArticlesSelector);
-};
-```
+#### 7/
 
-But this is not very pretty so lets implement redux useSelector in `src/utils/context.utils.js`
+See [instructions](./exercise-7/src/__hints__/instructions.md)
 
-```js
-```
+#### 8/
 
-- Create `src/modules/articles/components/article.component.js`
-- Create `src/pages/article.page.js`
-- Modify App.js
+See [instructions](./exercise-8/src/__hints__/instructions.md)
+
+#### 9/
+
+See [instructions](./exercise-9/src/__hints__/instructions.md)
+
+#### 10/
+
+See [instructions](./exercise-10/src/__hints__/instructions.md)
 
 ### My insights
 
@@ -181,6 +166,8 @@ While effects dependencies allow to detect changes between updates and trigger t
 - Whatever I say, react was thought to let you free in implementation details choices
 
 ### Prerequisites
+
+- Visual Studio Code and Live share plugin installed, alongside prettier and eslint
 
 - Knowing the basics of React, having already done something basic like a to do list. [See Documentation](https://reactjs.org/)
 
