@@ -56,7 +56,7 @@ export function ArticleCard({ article }) {
             color="primary"
             variant="outlined"
           >
-            View
+            See more
           </Button>
         </CardActions>
       </Card>

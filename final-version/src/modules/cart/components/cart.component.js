@@ -16,10 +16,9 @@ import DeleteIcon from '@material-ui/icons/RemoveCircle';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Modal } from '../../../components/modal.component';
-
 import { useCart } from '../cart.context';
 import { removeFromCart } from '../cart.actions';
+import { ROUTES_PATHS_BY_NAMES } from '../../routing/routing.constants';
 
 const useStyles = makeStyles({
   card: {
@@ -41,12 +40,11 @@ const useStyles = makeStyles({
 
 export function Cart() {
   const classes = useStyles();
-  const [showModal, setShowModal] = React.useState(false);
   const [{ articles }, dispatch] = useCart();
 
-  const removeItemFromList = id => () => dispatch(removeFromCart(id));
-
-  const toggleModal = () => setShowModal(!showModal);
+  const removeItemFromList = React.useCallback(id => () => dispatch(removeFromCart(id)), [
+    dispatch,
+  ]);
 
   return (
     <>
@@ -79,16 +77,17 @@ export function Cart() {
           </List>
         </CardContent>
         <CardActions>
-          <Button onClick={toggleModal} size="small" color="secondary" variant="outlined">
+          <Button
+            to={ROUTES_PATHS_BY_NAMES.checkout}
+            component={Link}
+            size="small"
+            color="secondary"
+            variant="outlined"
+          >
             Check out
           </Button>
         </CardActions>
       </Card>
-      {showModal && (
-        <Modal title="Checkout modal" closeModal={() => setShowModal(false)}>
-          <p>checkout</p>
-        </Modal>
-      )}
     </>
   );
 }

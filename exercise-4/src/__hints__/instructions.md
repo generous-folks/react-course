@@ -8,7 +8,7 @@
 
 ## TL;DR
 
-It doesn't feel "react" to have our home page holding the articles **fetching and rendering logic**, after all we may need a list of articles on other pages sometimes ? Let's clean the home page from state, effect and articles related jsx, and move it into its own place, something called "**Modules**".
+It doesn't feel "react" to have our home page holding the articles **fetching and rendering logic**, after all we may need a list of articles on other pages sometimes ? Let's clean the home page from state, effect and **articles** related jsx, and move it into its own place, something called "**Modules**".
 
 **Modules** are **features**, it holds **business rules**.
 
@@ -19,14 +19,24 @@ It doesn't feel "react" to have our home page holding the articles **fetching an
 
 ## Step by step
 
-### src/modules/articles/articlesList.component.js
-
-#### ArticlesList
-
-Create `src/modules/articles/articlesList.component.js` that exports a function `ArticlesList`. Then extract the state, effect and the articles markup from the home page to your `ArticlesList`. Use `ArticlesList` inside the home page and everything should look like before.
-
 ### src/modules/articles/articleCard.component.js
 
 #### ArticleCard
 
-Create `src/modules/articles/articleCard.component.js` from the Card MUI example, ArticleCard will get article={article} as prop (see API /fixtures/articles.json). Then replace the html markup by the ArticleCard in the ArticlesList
+Create `src/modules/articles/articleCard.component.js` from the [Card MUI example](../../../examples/styling/material-ui/card.component.js), **ArticleCard** will get the article (see API /fixtures/articles.json) as prop _article_.
+You'll only need to replace some of the _lorem ipsum_, see tests.
+
+### src/modules/articles/articlesList.component.js
+
+#### ArticlesList
+
+Create `src/modules/articles/articlesList.component.js` that exports a function **ArticlesList**.
+Then extract the state, effect and the articles markup from the home page and port it to your `ArticlesList`.
+Replace the _ul_ with a _Grid Container_, it should be the top element in the **ArticlesList**
+
+```js
+<Grid container spacing={4}></Grid>
+```
+
+Replace the _li_ html markup with the **ArticleCard**.
+Use `ArticlesList` inside the home page and everything should look like before.
