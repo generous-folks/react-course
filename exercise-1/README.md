@@ -1,8 +1,8 @@
 # 1/ Fetching, persisting data locally and list rendering
 
-| Create | Modify |
-| ------ | ------ |
-|        | App.js |
+| Action | Files      | Exports |
+| ------ | ---------- | ------- |
+| MODIFY | src/App.js | App     |
 
 ## TL;DR
 

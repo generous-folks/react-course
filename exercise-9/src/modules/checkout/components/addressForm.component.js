@@ -4,6 +4,62 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { useInput } from '../../../hooks/useInput.hook';
+
+const INPUTS_CONFIG = {
+  firstName: {
+    props: { autoComplete: 'given-name', label: 'First name' },
+    gridProps: { xs: 12, sm: 6 },
+  },
+  lastName: {
+    props: { autoComplete: 'family-name', label: 'Last name' },
+    gridProps: { xs: 12, sm: 6 },
+  },
+  address1: {
+    props: { autoComplete: 'shipping-address line-1', label: 'Address line 1' },
+    gridProps: { xs: 12 },
+  },
+  address2: {
+    props: { autoComplete: 'shipping-address line-2', label: 'Address line 2' },
+    gridProps: { xs: 12 },
+  },
+  city: {
+    props: { autoComplete: 'shipping address-level2', label: 'City' },
+    gridProps: { sm: 6, xs: 12 },
+  },
+  state: {
+    props: { label: 'Region/State' },
+    gridProps: { sm: 6, xs: 12 },
+  },
+  zip: {
+    props: { autoComplete: 'shipping postal-code', label: 'Zip code' },
+    gridProps: { sm: 6, xs: 12 },
+  },
+
+  country: {
+    props: { autoComplete: 'shipping country', label: 'Country code' },
+    gridProps: { xs: 12, sm: 6 },
+  },
+};
+
+// eslint-disable-next-line react/prop-types
+export const GridTextField = ({ props, gridProps, inputName }) => {
+  const [value, onChange] = useInput();
+  return (
+    <Grid item {...gridProps}>
+      <TextField
+        required
+        id={inputName}
+        name={inputName}
+        variant="standard"
+        fullWidth
+        {...props}
+        value={value}
+        onChange={onChange}
+      />
+    </Grid>
+  );
+};
 
 export default function AddressForm() {
   return (
@@ -12,91 +68,9 @@ export default function AddressForm() {
         Shipping address
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
+        {Object.keys(INPUTS_CONFIG).map(inputName => (
+          <GridTextField key={inputName} {...INPUTS_CONFIG[inputName]} inputName={inputName} />
+        ))}
         <Grid item xs={12}>
           <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value="yes" />}

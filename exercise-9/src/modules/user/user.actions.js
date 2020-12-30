@@ -1,15 +1,15 @@
+import { signIn, signOut } from '../../utils/api.utils';
+import { getUser } from './user.selectors';
+
 export const LOGIN = 'user/LOGIN';
 export const LOGOUT = 'user/LOGOUT';
 
-const encryptUserCredentials = () => {};
-const loginAPI = () => Promise.resolve({ id: 'xyz', mail: 'foo@bar.com', name: 'Foo Bar' });
-const getUser = () => ({ uid: 'xyz' });
-const logoutAPI = args => Promise.resolve(args);
+const encryptUserCredentials = (...args) => [...args];
 
 export const login = (email, password) => async dispatch => {
   try {
     const encryptedUser = encryptUserCredentials(email, password);
-    const user = await loginAPI(encryptedUser);
+    const user = await signIn(encryptedUser);
 
     localStorage.setItem('user', JSON.stringify(user));
 
@@ -22,11 +22,13 @@ export const login = (email, password) => async dispatch => {
 export const logout = () => async (dispatch, getState) => {
   try {
     const user = getUser(getState());
-    await logoutAPI(user);
+    if (!user) return;
 
     localStorage.removeItem('user');
 
-    return dispatch({ type: LOGOUT, id: user.id });
+    await signOut(user);
+
+    return dispatch({ type: LOGOUT, user });
   } catch (error) {
     dispatch({ type: LOGOUT, error });
   }

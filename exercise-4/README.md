@@ -1,9 +1,10 @@
 # 4/ Component composition, modules architecture, understanding responsibility
 
-| Create                             | Modify |
-| ---------------------------------- | ------ |
-| src/components/layout.component.js | App.js |
-| src/pages/contact.page.js          |
+| Action | Files                                          | Exports        |
+| ------ | ---------------------------------------------- | -------------- |
+| Create | src/modules/articles/articleCard.component.js  | {ArticleCard}  |
+| Create | src/modules/articles/articlesList.component.js | {ArticlesList} |
+| Modify | src/pages/home.page.js                         | {HomePage}     |
 
 ## TL;DR
 

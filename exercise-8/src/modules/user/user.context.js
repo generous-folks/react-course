@@ -4,13 +4,13 @@ import { userReducer, initialState } from './user.reducer';
 
 import { dispatchThunk } from '../../utils/context.utils';
 import { CHILDREN_PROP_TYPES } from '../../constants/proptypes.constants';
-import { useStoredUser } from './user.hooks';
+import { usePersistedUser } from './user.hooks';
 
 const UserStateContext = React.createContext();
 const UserDispatchContext = React.createContext();
 
 const UserProvider = ({ children }) => {
-  const user = useStoredUser();
+  const user = usePersistedUser();
   const updatedState = user && { user };
   const [state, dispatch] = React.useReducer(userReducer, updatedState || initialState);
   const getState = React.useCallback(() => state, [state]);

@@ -5,12 +5,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, useTheme } from '@material-ui/styles';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import gfm from 'remark-gfm';
 import instructionsMd from './instructions.md';
+import { lighten } from '@material-ui/core';
 
 const renderers = {
   code: ({ language, value }) => {
@@ -18,7 +19,7 @@ const renderers = {
   },
 };
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   position: {
     position: 'fixed',
     bottom: 10,
@@ -28,13 +29,57 @@ const useStyles = makeStyles({
     maxHeight: 'unset',
     padding: '2em',
   },
-});
+  table: {
+    ['& table']: {
+      display: 'table',
+      width: '100%',
+      borderCollapse: 'collapse',
+      borderSpacing: 0,
+
+      '& tr': {
+        color: 'inherit',
+        display: 'table-row',
+        verticalAlign: 'middle',
+        // We disable the focus ring for mouse, touch and keyboard users.
+        outline: 0,
+        '&$hover:hover': {
+          backgroundColor: theme.palette.action.hover,
+        },
+        '&$selected, &$selected:hover': {
+          backgroundColor: 'rgba(255,255,255,0.8)',
+        },
+      },
+
+      ['& th, td']: {
+        ...theme.typography.body2,
+        fontSize: '15px',
+        display: 'table-cell',
+        verticalAlign: 'inherit',
+        // Workaround for a rendering bug with spanned columns in Chrome 62.0.
+        // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
+        borderBottom: `1px solid rgba(0,0,0,0.25)`,
+        textAlign: 'left',
+        padding: theme.spacing(2),
+      },
+      '& th': {
+        fontWeight: 'bold',
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+      },
+      ['& tr:nth-child(2n+1)']: {
+        backgroundColor: lighten(theme.palette.primary.light, 0.9),
+      },
+    },
+  },
+}));
 
 export function SeeHints() {
   const [open, setOpen] = React.useState(false);
   const [markdownFile, setMarkdownFile] = React.useState('');
 
-  const classes = useStyles();
+  const theme = useTheme();
+
+  const classes = useStyles(theme);
 
   React.useEffect(() => {
     fetch(instructionsMd)
@@ -64,7 +109,12 @@ export function SeeHints() {
         open={open}
         PaperProps={{ className: classes.dialog }}
       >
-        <ReactMarkdown plugins={[gfm]} renderers={renderers} children={markdownFile} />
+        <ReactMarkdown
+          className={classes.table}
+          plugins={[gfm]}
+          renderers={renderers}
+          children={markdownFile}
+        />
       </Dialog>
     </div>
   );
