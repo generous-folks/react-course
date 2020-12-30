@@ -3,17 +3,24 @@
 /* eslint-disable react/prop-types */
 
 import React from 'react';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles, useTheme } from '@material-ui/styles';
+import { lighten } from '@material-ui/core/styles/colorManipulator';
+
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import gfm from 'remark-gfm';
+import emoji from 'emoji-dictionary';
+
 import instructionsMd from './instructions.md';
-import { lighten } from '@material-ui/core';
+
+const emojiSupport = text => text.value.replace(/:\w+:/gi, name => emoji.getUnicode(name) || name);
 
 const renderers = {
+  text: emojiSupport,
   code: ({ language, value }) => {
     return <SyntaxHighlighter style={vscDarkPlus} language={language} children={value} />;
   },

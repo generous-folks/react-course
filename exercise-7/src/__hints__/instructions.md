@@ -1,5 +1,7 @@
 # 7/ Providers cold shower, a global state struggle
 
+:warning: :man_shrugging:
+
 | Action | Files                                                    | Exports                                                |
 | ------ | -------------------------------------------------------- | ------------------------------------------------------ |
 | CREATE | src/modules/user/user.actions.js                         | {login, logout}                                        |
