@@ -1,13 +1,75 @@
 # React Course
 
+This project is meant to be a 3 days long course on React fundamentals, but especially on **managing the state** and **dealing with hooks**.
+
+## Table of Contents
+
+1. [Requirements](README/#requirements)
+2. [Introduction](README/#introduction)
+3. [Getting Started](README/#getting_started)
+4. [What you'll learn](README/#what_you'll_learn)
+5. [Workflow](README/#workflow)
+6. [Resources](README/#resources)
+
 ## Requirements
 
-- Yarn
-- Node >=12
+[![Generic badge](https://img.shields.io/badge/Node->=12-lightgreen.svg)](https://shields.io/) [![Generic badge](https://img.shields.io/badge/Yarn->=1.22-lightgreen.svg)](https://shields.io/)
+
+## Introduction
+
+Here is the tree architecture of the project.
+
+```txt
+.
+├── __mocks__
+├── config
+├── examples
+├── exercise-1
+├── exercise-2
+├── exercise-3
+├── exercise-4
+├── exercise-5
+├── exercise-6
+├── exercise-7
+├── exercise-8
+├── exercise-9
+├── exercise-10
+├── final-version
+├── fixtures
+├── node_modules
+├── public
+├── scripts
+└── theory
+```
+
+Each `exercise-*` directory is the solution of the previous one.
+Validation of an exercise is made through passing the unit tests, it is a **TDD approach** with the tests already written.
+
+### Exercise architecture
+
+This is the bare minimum files you'll see in all the exercises.
+
+```txt
+exercise-1
+├── README.md
+└── src
+    ├── __hints__
+    │   ├── dialog.js
+    │   └── instructions.md
+    ├── __tests__
+    │   └── App.spec.js
+    ├── App.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── utils
+        └── api.utils.js
+
+```
+
+- **\_\_hints\_\_** directory: contains the code use to wrap the whole application and display a "README" button in the app so you can see the instructions on the page you are building, in a slightly more graphical way.
 
 ### Knowledge Prerequisites
-
-- Visual Studio Code and Live share plugin installed, alongside prettier and eslint
 
 - Knowing the basics of React, having already done something basic like a to do list. [See Documentation](https://reactjs.org/)
 
@@ -22,13 +84,13 @@
 
 In your terminal
 
-- Install project locally : `git clone https://github.com/generous-folks/react-course.git`
-- Install the dependencies `cd react-course && yarn`
+- Install the project locally: `git clone https://github.com/generous-folks/react-course.git`
+- Install the dependencies: `cd react-course && yarn`
 
-Start the app :
+Start the app:
 
-- For the demo : `yarn start:demo`
-- For an exercise : `yarn ex $exerciseNumber`
+- For the demo: `yarn start:demo`
+- For an exercise: `yarn ex $exerciseNumber`
   > e.g. : `yarn ex 1`
 
 ## What you'll learn
@@ -39,10 +101,12 @@ It consists on a shared layout, a list of products, a product page, a shopping c
 
 We can't cover everything in this course, but we try to give a good overview of some common ways to build react apps.
 
+> \* = optional
+
 ### react
 
 - Understanding of React principles
-- Using Class and Functional components
+- Using Class\* and Functional components
 - Managing state and props
 - PropTypes checking
 - Understanding components life cycles
@@ -54,17 +118,17 @@ We can't cover everything in this course, but we try to give a good overview of 
 
 - Basic Routing
 - Param Matching
-- Dynamic Routing and Code splitting
+- Dynamic Routing and Code splitting\*
 
 ### styling
 
 - CSS
 - CSS-in-JS
 - Material-UI library
-- Styled-Components
-- Global Theme usage
+- Styled-Components\*
+- Global Theme usage\*
 
-### redux
+### redux\*
 
 - Configuration and Architecture
 - Basic global state management usage
@@ -172,7 +236,7 @@ const Component = (props) => {
 
 While effects dependencies allow to detect changes between updates and trigger the effect consequently, react does only update on props and state change. If your value is mutated after a re-render, or before, you might not get the expected behavior. Embrace immutability the most you can.
 
-- Learn redux, hard to grasp at first but it feels very natural after you clearly visualize each piece and its underlying mechanics. Everything fits together.
+- Learn redux, it is hard to grasp at first but it feels very natural after you clearly visualize each piece and its underlying mechanics. Everything fits together and enforce the event driven design. Be careful as you can only store static data and limit the amount of it.
 
 - Whatever I say, react was thought to let you free in implementation details choices
 
@@ -187,3 +251,11 @@ A well organized and timed mob programming could be a good format for a remote s
 - Create a set of User Stories for each participant
 - Each participant should see every concepts (unless if able to target different needs for each participant => very personalized but hard to coordinate)
 - Format cannot be the same as this one. There should be a set of visual components / business modules and state management => see to add features (user account, search, product customizing)
+
+## Resources
+
+- [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+- [React docs](https://reactjs.org/)
+- [hooks lifecycles schema](https://wavez.github.io/react-hooks-lifecycle/)
+- **Kent C. Dodds** articles [Application state management](https://kentcdodds.com/blog/application-state-management-with-react)
+  and [How to use Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
