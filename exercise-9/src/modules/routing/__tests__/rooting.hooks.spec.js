@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { shallow } from 'enzyme';
 
 import { isUserConnected } from '../../user/user.selectors';
-import { ROUTES } from '../routing.constants';
+import { ROUTES_PATHS_BY_NAMES } from '../routing.constants';
 
 import { useLoginRedirect } from '../routing.hooks';
 
@@ -54,7 +54,7 @@ describe('useLoginRedirect', () => {
       it('should not call push', () => {
         const push = jest.fn();
         useHistory.mockReturnValueOnce({ push });
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.checkout });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.checkout });
         shallow(<ShowCase />);
 
         expect(push).not.toBeCalled();
@@ -80,17 +80,17 @@ describe('useLoginRedirect', () => {
 
     describe('when not connected', () => {
       it('should push to login page on checkout page', async () => {
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.checkout });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.checkout });
 
         await act(async () => {
           render(<ShowCase />, container);
         });
 
-        expect(push).toBeCalledWith(ROUTES.login);
+        expect(push).toBeCalledWith(ROUTES_PATHS_BY_NAMES.login);
       });
 
       it('should not push on home page', async () => {
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.home });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.home });
 
         await act(async () => {
           render(<ShowCase />, container);
@@ -106,7 +106,7 @@ describe('useLoginRedirect', () => {
       });
 
       it('should not call push on checkout page', async () => {
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.checkout });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.checkout });
 
         await act(async () => {
           render(<ShowCase />, container);
@@ -116,7 +116,7 @@ describe('useLoginRedirect', () => {
       });
 
       it('should not call push on home page', async () => {
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.home });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.home });
 
         await act(async () => {
           render(<ShowCase />, container);
@@ -126,13 +126,13 @@ describe('useLoginRedirect', () => {
       });
 
       it('should push from login page to home page', async () => {
-        useLocation.mockReturnValueOnce({ pathname: ROUTES.login });
+        useLocation.mockReturnValueOnce({ pathname: ROUTES_PATHS_BY_NAMES.login });
 
         await act(async () => {
           render(<ShowCase />, container);
         });
 
-        expect(push).toBeCalledWith(ROUTES.home);
+        expect(push).toBeCalledWith(ROUTES_PATHS_BY_NAMES.home);
       });
     });
   });

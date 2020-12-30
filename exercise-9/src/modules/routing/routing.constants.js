@@ -1,4 +1,4 @@
-export const ROUTES = {
+export const ROUTES_PATHS_BY_NAMES = {
   home: '/',
   login: '/login',
   about: '/about',
@@ -7,4 +7,4 @@ export const ROUTES = {
   checkout: '/checkout',
 };
 
-export const PROTECTED_ROUTES = [ROUTES.checkout];
+export const PROTECTED_PATHS = [ROUTES_PATHS_BY_NAMES.checkout];
