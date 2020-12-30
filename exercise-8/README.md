@@ -19,6 +19,4 @@ We need to bo redirected to the login page on some routes, not all.
 
 ## Step by step
 
-To begin with, let's duplicate the **articles** modules and rename it user, it should be pretty step forward to adapt it.
-
 ### src/modules/checkout/checkout.component.js

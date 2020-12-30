@@ -18,7 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useCart } from '../cart.context';
 import { removeFromCart } from '../cart.actions';
-import { ROUTES } from '../../routing/routing.constants';
+import { ROUTES_PATHS_BY_NAMES } from '../../routing/routing.constants';
 
 const useStyles = makeStyles({
   card: {
@@ -78,7 +78,7 @@ export function Cart() {
         </CardContent>
         <CardActions>
           <Button
-            to={ROUTES.checkout}
+            to={ROUTES_PATHS_BY_NAMES.checkout}
             component={Link}
             size="small"
             color="secondary"

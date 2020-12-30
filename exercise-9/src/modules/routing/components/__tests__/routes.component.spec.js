@@ -2,7 +2,7 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 import { AppRoutes } from '../routes.component';
-import { ROUTES } from '../../routing.constants';
+import { ROUTES_PATHS_BY_NAMES } from '../../routing.constants';
 import { Route } from 'react-router-dom';
 
 jest.mock('../../routing.hooks.js', () => ({ useLoginRedirect: jest.fn() }));
@@ -27,7 +27,7 @@ describe('<AppRoutes />', () => {
           .find(Route)
           .map(node => node.prop('path'))
           .sort(),
-      ).toMatchObject(Object.values(ROUTES).sort());
+      ).toMatchObject(Object.values(ROUTES_PATHS_BY_NAMES).sort());
     });
   });
 });

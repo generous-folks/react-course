@@ -11,7 +11,7 @@
 | CREATE | src/pages/login.page.js                                  | {LoginPage}                                            |
 | CREATE | src/pages/checkout.page.js                               | {CheckoutPage}                                         |
 | CREATE | src/modules/routing/routing.hooks.js                     | {useLoginRedirect}                                     |
-| CREATE | src/modules/routing/routing.constants.js                 | {ROUTES, PROTECTED_ROUTES}                             |
+| CREATE | src/modules/routing/routing.constants.js                 | {ROUTES_PATHS_BY_NAMES, PROTECTED_PATHS}               |
 | CREATE | src/modules/routing/components/routes.component.js       | {AppRoutes}                                            |
 | MODIFY | src/App.js                                               | {App}                                                  |
 | MODIFY | src/modules/articles/components/articleCard.component.js | {ArticleCard}                                          |
@@ -127,26 +127,26 @@ export const MyForm = () => {
 
 Let's do a clean enum for our routes and for our protected routes.
 
-#### ROUTES
+#### ROUTES_PATHS_BY_NAMES
 
 Create an enum of _routePathsByNames_
 
 :warning: The routes exhaustiveness is tested !
 
 ```js
-export const ROUTES = {
+export const ROUTES_PATHS_BY_NAMES = {
   foo: '/foo',
 };
 ```
 
-#### PROTECTED_ROUTES
+#### PROTECTED_PATHS
 
 Create an enum of _routePathsByNames_
 
 :warning: The routes exhaustiveness is tested !
 
 ```js
-export const PROTECTED_ROUTES = [ROUTES.checkout];
+export const PROTECTED_PATHS = [ROUTES_PATHS_BY_NAMES.checkout];
 ```
 
 ### src/modules/routing/routing.hooks.js

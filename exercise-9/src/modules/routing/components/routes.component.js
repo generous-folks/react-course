@@ -11,7 +11,7 @@ import { LoginPage } from '../../../pages/login.page';
 import { ContactPage } from '../../../pages/contact.page';
 import { CheckoutPage } from '../../../pages/checkout.page';
 
-import { ROUTES } from '../routing.constants';
+import { ROUTES_PATHS_BY_NAMES } from '../routing.constants';
 import { useLoginRedirect } from '../routing.hooks';
 
 export function AppRoutes() {
@@ -20,26 +20,26 @@ export function AppRoutes() {
   return (
     <>
       <Switch>
-        <Route path={ROUTES.about}>
+        <Route path={ROUTES_PATHS_BY_NAMES.about}>
           <AboutPage />
         </Route>
-        <Route path={ROUTES.contact}>
+        <Route path={ROUTES_PATHS_BY_NAMES.contact}>
           <ContactPage />
         </Route>
-        <Route path={ROUTES.login}>
+        <Route path={ROUTES_PATHS_BY_NAMES.login}>
           <LoginPage />
         </Route>
       </Switch>
       <ArticlesProvider>
         <CartProvider>
           <Switch>
-            <Route exact path={ROUTES.checkout}>
+            <Route exact path={ROUTES_PATHS_BY_NAMES.checkout}>
               <CheckoutPage />
             </Route>
-            <Route path={ROUTES.article}>
+            <Route path={ROUTES_PATHS_BY_NAMES.article}>
               <ArticlePage />
             </Route>
-            <Route exact path={ROUTES.home}>
+            <Route exact path={ROUTES_PATHS_BY_NAMES.home}>
               <HomePage />
             </Route>
           </Switch>
