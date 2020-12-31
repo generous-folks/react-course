@@ -4,12 +4,34 @@ This project is meant to be a 3 days long course on React fundamentals, but espe
 
 ## Table of Contents
 
-1. [Requirements](README/#requirements)
-2. [Introduction](README/#introduction)
-3. [Getting Started](README/#getting_started)
-4. [What you'll learn](README/#what_you'll_learn)
-5. [Workflow](README/#workflow)
-6. [Resources](README/#resources)
+- [Table of Contents](#table-of-contents)
+- [Requirements](#requirements)
+- [Introduction](#introduction)
+  - [Exercise architecture](#exercise-architecture)
+  - [Knowledge Prerequisites](#knowledge-prerequisites)
+- [Getting Started](#getting-started)
+- [What you'll learn](#what-youll-learn)
+  - [react](#react)
+  - [react-router](#react-router)
+  - [styling](#styling)
+  - [redux\*](#redux)
+- [Workflow](#workflow)
+  - [Index](#index)
+    - [1/ Fetching, persisting data locally and list rendering](#1-fetching-persisting-data-locally-and-list-rendering)
+    - [2/ Using react-router-dom to create pages](#2-using-react-router-dom-to-create-pages)
+    - [3/ Wrapping pages, building layout with Material-UI](#3-wrapping-pages-building-layout-with-material-ui)
+    - [4/ Component composition, modules architecture, understanding responsibility](#4-component-composition-modules-architecture-understanding-responsibility)
+    - [5/ Event Driven Design and shared store, the Redux philosophy within React Context](#5-event-driven-design-and-shared-store-the-redux-philosophy-within-react-context)
+    - [6/](#6)
+    - [7/](#7)
+    - [8/](#8)
+    - [9/](#9)
+    - [10/](#10)
+  - [Ideas for remote groups learning](#ideas-for-remote-groups-learning)
+    - [Mob programming](#mob-programming)
+    - [Live share on common branch](#live-share-on-common-branch)
+- [My insights](#my-insights)
+- [Resources](#resources)
 
 ## Requirements
 
@@ -186,11 +208,25 @@ See [instructions](./exercise-9/src/__hints__/instructions.md)
 
 See [instructions](./exercise-10/src/__hints__/instructions.md)
 
-### My insights
+### Ideas for remote groups learning
+
+#### Mob programming
+
+A well organized and timed mob programming could be a good format for a remote session. See how Live share + Teams|Meet|Slack screen sharing works
+
+#### Live share on common branch
+
+- Create a set of User Stories for each participant
+- Each participant should see every concepts (unless if able to target different needs for each participant => very personalized but hard to coordinate)
+- Format cannot be the same as this one. There should be a set of visual components / business modules and state management => see to add features (user account, search, product customizing)
+
+## My insights
 
 - Most problems are avoided by keeping components single purposed.
 
 What is this component role ? Should it display something ? Ok then, that's the only thing it does. Should it fetch some data ? Ok, if it must, but all the logic should be factorize elsewhere, components are not the place for business functions definitions.
+
+---
 
 - Prefer using the state setter callback to access the state current value in your effects. Return the current value in case you shouldn't update the state, it will do nothing.
 
@@ -199,11 +235,13 @@ export const Counter = ({ changingProp }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // if count were included to do the addition, we'll get an infinite loop
+    // if "count" was used to do the addition, we'll get an infinite loop
     setCount(currentCount => currentCount + 1);
   }, [changingProp]);
 };
 ```
+
+---
 
 - BE VERY CAREFUL ABOUT REFERENCES, everywhere.
 
@@ -232,25 +270,19 @@ const Component = (props) => {
 }
 ```
 
+---
+
 - KEEP YOUR EFFECTS CLEAN: use eslint plugin hooks to be warned about needed dependencies, you can't rely on let and refs to trigger your effects.
 
 While effects dependencies allow to detect changes between updates and trigger the effect consequently, react does only update on props and state change. If your value is mutated after a re-render, or before, you might not get the expected behavior. Embrace immutability the most you can.
 
+---
+
 - Learn redux, it is hard to grasp at first but it feels very natural after you clearly visualize each piece and its underlying mechanics. Everything fits together and enforce the event driven design. Be careful as you can only store static data and limit the amount of it.
 
+---
+
 - Whatever I say, react was thought to let you free in implementation details choices
-
-### Ideas for remote groups learning
-
-#### Mob programming
-
-A well organized and timed mob programming could be a good format for a remote session. See how Live share + Teams|Meet|Slack screen sharing works
-
-#### Live share on common branch
-
-- Create a set of User Stories for each participant
-- Each participant should see every concepts (unless if able to target different needs for each participant => very personalized but hard to coordinate)
-- Format cannot be the same as this one. There should be a set of visual components / business modules and state management => see to add features (user account, search, product customizing)
 
 ## Resources
 
