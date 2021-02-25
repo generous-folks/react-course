@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
@@ -21,7 +21,6 @@ import { removeFromCart } from '../cart.actions';
 
 const useStyles = makeStyles({
   card: {
-    minHeight: '400px',
     display: 'flex',
     flexDirection: 'column',
     position: 'sticky',
@@ -35,15 +34,14 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     color: 'black',
   },
+  total: {},
 });
 
 export function Cart() {
   const classes = useStyles();
-  const [{ articles }, dispatch] = useCart();
+  const [{ articles, total }, dispatch] = useCart();
 
-  const removeItemFromList = React.useCallback(id => () => dispatch(removeFromCart(id)), [
-    dispatch,
-  ]);
+  const removeItemFromList = useCallback(id => () => dispatch(removeFromCart(id)), [dispatch]);
 
   return (
     <>
@@ -56,11 +54,12 @@ export function Cart() {
             {Object.values(articles).map(article => (
               <ListItem
                 component={Link}
-                to={`/articles/${article.id}`}
+                to={`/articles/${article.slug}`}
                 key={article.id}
                 className={classes.listItem}
               >
                 <ListItemText primary={`x${article.occurrences || 1} - ${article.name}`} />
+                <ListItemText secondary={(article.occurrences || 1) * article.price} />
                 <ListItemSecondaryAction>
                   <IconButton
                     size="small"
@@ -74,6 +73,9 @@ export function Cart() {
               </ListItem>
             ))}
           </List>
+          <Typography align="right" gutterBottom variant="h6" component="h4">
+            Total Price: {total} $
+          </Typography>
         </CardContent>
         <CardActions>
           <Button onClick={() => {}} size="small" color="secondary" variant="outlined">

@@ -11,7 +11,7 @@
 
 ## TL;DR
 
-Let's create the checkout modules !
+Let's create the checkout module !
 
 We need a Checkout page that needs a logged in user. So we also need a Login page.
 We'll mock the user api and authentication process for now.

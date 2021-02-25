@@ -102,11 +102,12 @@
   "scripts": {
     "start": "node scripts/start.js",
     "start:demo": "node scripts/start.js final-version",
-    "ex": "APP_EXERCISE=true node scripts/start.js",
+    "ex": "APP_EXERCISE=true FOOBAR=$2 node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test jest --config=config/jest/config.js",
     "lint": "eslint --cache '**/src/**/*.js'",
-    "format": "prettier-eslint --write $PWD/'**/src/**/*.{js, json}'"
+    "format": "prettier-eslint --write $PWD/'**/src/**/*.{js, json}'",
+    "solution": "node scripts/solution.js"
   },
   "browserslist": {
     "production": [

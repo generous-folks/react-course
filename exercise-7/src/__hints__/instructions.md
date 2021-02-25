@@ -102,11 +102,9 @@ Create a stateful hook that returns the state value (input) and an **onChange** 
 Basically you would use a control input this way
 
 ```js
-export const MyForm = () => {
+export const MyInput = () => {
   // input type text expects a string
-  const [inputValue, setInputValue] = useState('');
-
-  const onChange = event => setInputValue(event.target.value);
+  const [value, onChange] = useInput('');
   ...
 };
 ```

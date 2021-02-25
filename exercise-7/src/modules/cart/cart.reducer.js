@@ -2,15 +2,21 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from './cart.actions';
 
 export const initialState = {
   articles: {},
+  total: 0,
 };
 
 export const cartReducer = (state, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       const { id } = action.article;
+
       // It doesn't already exist in the cart articles
       if (!state.articles[id]) {
-        return { ...state, articles: { ...state.articles, [id]: action.article } };
+        return {
+          ...state,
+          articles: { ...state.articles, [id]: action.article },
+          total: state.total + action.article.price,
+        };
       }
 
       // Now, we know we have at least one occurrence of the current article in the cart
@@ -22,7 +28,11 @@ export const cartReducer = (state, action) => {
         occurrences: occurrences ? occurrences + 1 : 2,
       };
 
-      return { ...state, articles: { ...state.articles, [id]: incrementedArticle } };
+      return {
+        ...state,
+        articles: { ...state.articles, [id]: incrementedArticle },
+        total: state.total + action.article.price,
+      };
     }
 
     case REMOVE_FROM_CART: {
@@ -39,6 +49,7 @@ export const cartReducer = (state, action) => {
             ...state.articles,
             [action.id]: { ...targetArticle, occurrences: targetOccurrences - 1 },
           },
+          total: state.total - targetArticle.price,
         };
       }
 
@@ -48,6 +59,7 @@ export const cartReducer = (state, action) => {
           (acc, curr) => (action.id === curr ? acc : { ...acc, [curr]: state.articles[curr] }),
           {},
         ),
+        total: state.total - targetArticle.price,
       };
     }
     default: {
