@@ -10,30 +10,6 @@ import Grid from '@material-ui/core/Grid';
 
 import { useCart } from '../../cart/cart.context';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-
 const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
@@ -56,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Review({ formState }) {
   const classes = useStyles();
-  const [{ articles }] = useCart();
+  const [{ articles, total }] = useCart();
   console.log(articles, formState);
 
   return (
@@ -65,17 +41,17 @@ export default function Review({ formState }) {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map(product => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {Object.values(articles).map(article => (
+          <ListItem className={classes.listItem} key={article.name}>
+            <ListItemText primary={article.name} secondary={article.description} />
+            <Typography variant="body2">{article.price}</Typography>
           </ListItem>
         ))}
 
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            ${total}
           </Typography>
         </ListItem>
       </List>

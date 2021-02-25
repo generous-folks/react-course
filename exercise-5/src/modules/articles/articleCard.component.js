@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 export function ArticleCard({ article }) {
-  const { name, year, image } = article;
+  const { name, year, image, price } = article;
   const classes = useStyles();
 
   return (
