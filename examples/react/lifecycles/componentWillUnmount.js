@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Component extends React.Component {
   timeoutId = null;
@@ -7,7 +7,7 @@ class Component extends React.Component {
   componentDidMount() {
     this.timeoutId = setTimeout(() => {
       // do stuff
-    }, 5000)
+    }, 5000);
   }
 
   // Right place to cancel subscriptions
@@ -16,16 +16,9 @@ class Component extends React.Component {
     // Do additional stuff like dispatching events...
   }
 
-
   render() {
-    return(
-      <div>
-      </div>
-    )
+    return <div></div>;
   }
-
-
 }
-
 
 export default Component;

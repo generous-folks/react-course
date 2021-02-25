@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import request from 'superagent';
 
 // componentDidUpdate is triggered on every re-render, props or state changes
 
 class Component extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-       list: [],
-    }
+      list: [],
+    };
   }
   // sometimes, componentDidMount is triggered before receiving props
   componentDidMount() {
@@ -24,41 +24,39 @@ class Component extends React.Component {
   // It is another place for side-effects (fetching, subscriptions and so on)
   async componentDidUpdate(prevProps, prevState) {
     // The list is not empty and we should not fetch
-    if(this.state.list.length !== 0 || !this.props.shouldFetch) {
+    if (this.state.list.length !== 0 || !this.props.shouldFetch) {
       // Return early if we don't want to do anything
       return;
     }
 
     // Code that will be executed each time the component update
-    const list = await request.get("url");
-    this.setState({ list })
-
+    const list = await request.get('url');
+    this.setState({ list });
   }
-
 
   render() {
     const { list } = this.state;
-    return(
+    return (
       <div>
         <h1>Some list</h1>
-      <ul>
-        {list.map(listItem => (
-          <div key={listItem.name}>
-            <h3>{listItem.name}</h3>
-          </div>
-        ))}
-      </ul>
+        <ul>
+          {list.map(listItem => (
+            <div key={listItem.name}>
+              <h3>{listItem.name}</h3>
+            </div>
+          ))}
+        </ul>
       </div>
-    )
+    );
   }
 }
 
 Component.defaultProps = {
   shouldFetch: null,
-}
+};
 
 Component.propTypes = {
   shouldFetch: PropTypes.bool,
-}
+};
 
 export default Component;

@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
 
 export default class FetchComponent extends Component {
   constructor(props) {
@@ -8,31 +7,29 @@ export default class FetchComponent extends Component {
       pending: false,
       items: [],
       error: false,
-    }
+    };
   }
 
   componentDidMount() {
-    this.setState(state => ({ ...state, pending: true }))
+    this.setState(state => ({ ...state, pending: true }));
     fetch('https://some-url.com/api/items')
-    .then(res => this.setState(state => ({ ...state, pending: false, items: res.body })))
-    .catch(err => {
-      // Do something with the error
-      console.log(err);
-      this.setState(state => ({ ...state, error: true, pending: false }))
-    })
-
+      .then(res => this.setState(state => ({ ...state, pending: false, items: res.body })))
+      .catch(err => {
+        // Do something with the error
+        console.log(err);
+        this.setState(state => ({ ...state, error: true, pending: false }));
+      });
   }
-
 
   render() {
     const { pending, error, items } = this.state;
 
-    if(pending && items.length === 0) {
-      return <p>Some Loader Component</p>
+    if (pending && items.length === 0) {
+      return <p>Some Loader Component</p>;
     }
 
-    if(error) {
-      return <p>Error Page Component...</p>
+    if (error) {
+      return <p>Error Page Component...</p>;
     }
 
     return (
@@ -44,6 +41,6 @@ export default class FetchComponent extends Component {
           </div>
         ))}
       </div>
-    )
+    );
   }
 }
