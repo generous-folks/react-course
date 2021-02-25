@@ -34,7 +34,6 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     color: 'black',
   },
-  total: {},
 });
 
 export function Cart() {
@@ -44,45 +43,43 @@ export function Cart() {
   const removeItemFromList = useCallback(id => () => dispatch(removeFromCart(id)), [dispatch]);
 
   return (
-    <>
-      <Card className={classes.card}>
-        <CardContent className={classes.cardContent}>
-          <Typography gutterBottom variant="h5" component="h2">
-            Cart
-          </Typography>
-          <List aria-label="purchased-items-list">
-            {Object.values(articles).map(article => (
-              <ListItem
-                component={Link}
-                to={`/articles/${article.slug}`}
-                key={article.id}
-                className={classes.listItem}
-              >
-                <ListItemText primary={`x${article.occurrences || 1} - ${article.name}`} />
-                <ListItemText secondary={(article.occurrences || 1) * article.price} />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    size="small"
-                    onClick={removeItemFromList(article.id)}
-                    edge="end"
-                    aria-label="delete"
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-          <Typography align="right" gutterBottom variant="h6" component="h4">
-            Total Price: {total} $
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button onClick={() => {}} size="small" color="secondary" variant="outlined">
-            Check out
-          </Button>
-        </CardActions>
-      </Card>
-    </>
+    <Card className={classes.card}>
+      <CardContent className={classes.cardContent}>
+        <Typography gutterBottom variant="h5" component="h2">
+          Cart
+        </Typography>
+        <List aria-label="purchased-items-list">
+          {Object.values(articles).map(article => (
+            <ListItem
+              component={Link}
+              to={`/articles/${article.slug}`}
+              key={article.id}
+              className={classes.listItem}
+            >
+              <ListItemText primary={`x${article.occurrences || 1} - ${article.name}`} />
+              <ListItemText secondary={(article.occurrences || 1) * article.price} />
+              <ListItemSecondaryAction>
+                <IconButton
+                  size="small"
+                  onClick={removeItemFromList(article.id)}
+                  edge="end"
+                  aria-label="delete"
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+        <Typography align="right" gutterBottom variant="h6" component="h4">
+          Total Price: {total} $
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button onClick={() => {}} size="small" color="secondary" variant="outlined">
+          Check out
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
