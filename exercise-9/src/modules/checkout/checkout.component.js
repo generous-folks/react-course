@@ -49,14 +49,21 @@ const REVIEW = 'Review your order';
 
 const steps = [SHIPPING, PAYMENT, REVIEW];
 
-function getStepContent(step, setFormState) {
+function getStepContent(step, [formState, setFormState]) {
   switch (step) {
     case SHIPPING:
       return <AddressForm formKey={SHIPPING} step={step} setParentState={setFormState} />;
     case PAYMENT:
       return <PaymentForm formKey={SHIPPING} step={step} setParentState={setFormState} />;
     case REVIEW:
-      return <Review formKey={SHIPPING} step={step} setParentState={setFormState} />;
+      return (
+        <Review
+          formKey={SHIPPING}
+          step={step}
+          formState={formState}
+          setParentState={setFormState}
+        />
+      );
     default:
       throw new Error('Unknown step');
   }
@@ -71,11 +78,7 @@ export const initialFormState = {
 function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [formState, setFormState] = useStepperForm(initialFormState);
-
-  React.useEffect(() => {
-    console.log(formState);
-  }, [formState]);
+  const stepperForm = useStepperForm(initialFormState);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -111,7 +114,7 @@ function Checkout() {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(steps[activeStep], setFormState)}
+              {getStepContent(steps[activeStep], stepperForm)}
               <div className={classes.buttons}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} className={classes.button}>

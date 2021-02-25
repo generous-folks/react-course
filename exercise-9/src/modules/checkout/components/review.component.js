@@ -1,10 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+
+import { useCart } from '../../cart/cart.context';
 
 const products = [
   {
@@ -50,8 +54,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Review() {
+export default function Review({ formState }) {
   const classes = useStyles();
+  const [{ articles }] = useCart();
+  console.log(articles, formState);
 
   return (
     <React.Fragment>
@@ -102,3 +108,7 @@ export default function Review() {
     </React.Fragment>
   );
 }
+
+Review.propTypes = {
+  formState: PropTypes.shape({}).isRequired,
+};

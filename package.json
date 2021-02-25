@@ -86,7 +86,7 @@
     "prettier-eslint": "^9.0.1",
     "prettier-eslint-cli": "^5.0.0",
     "react-app-polyfill": "^1.0.4",
-    "react-dev-utils": "^11.0.3",
+    "react-dev-utils": "^9.1.0",
     "resolve": "1.12.0",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "7.2.0",
@@ -102,7 +102,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "start:demo": "node scripts/start.js final-version",
-    "ex": "APP_EXERCISE=true FOOBAR=$2 node scripts/start.js",
+    "ex": "APP_EXERCISE=true node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test jest --config=config/jest/config.js",
     "lint": "eslint --cache '**/src/**/*.js'",
