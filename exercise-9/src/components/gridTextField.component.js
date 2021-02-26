@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { useInput } from '../hooks/useInput.hook';
 
-export const GridTextField = memo(({ props, gridProps, inputName, onBlur }) => {
-  const [value, onChange] = useInput();
+export const GridTextField = memo(({ initialState, props, gridProps, inputName, onBlur }) => {
+  const [value, onChange] = useInput(initialState);
 
   return (
     <Grid item {...gridProps}>
@@ -31,4 +31,5 @@ GridTextField.propTypes = {
   gridProps: PropTypes.object.isRequired,
   inputName: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
+  initialState: PropTypes.any,
 };

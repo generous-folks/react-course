@@ -9,14 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
 import { useCart } from '../../cart/cart.context';
-
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+import { PAYMENT, SHIPPING } from '../checkout.constants';
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -29,10 +22,26 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
 }));
+const defaultObject = {};
+
+export const getShippingState = state => {
+  if (!state[SHIPPING]) return defaultObject;
+  return state[SHIPPING];
+};
+
+export const getPaymentState = state => {
+  if (!state[PAYMENT]) return defaultObject;
+  return state[PAYMENT];
+};
 
 export default function Review({ formState }) {
   const classes = useStyles();
   const [{ articles, total }] = useCart();
+  const { firstName, lastName, address1, address2, city, state, zip, country } = getShippingState(
+    formState,
+  );
+  const { cardName, cardNumber, expDate } = getPaymentState(formState);
+
   console.log(articles, formState);
 
   return (
@@ -43,8 +52,10 @@ export default function Review({ formState }) {
       <List disablePadding>
         {Object.values(articles).map(article => (
           <ListItem className={classes.listItem} key={article.name}>
-            <ListItemText primary={article.name} secondary={article.description} />
-            <Typography variant="body2">{article.price}</Typography>
+            <ListItemText primary={article.name} secondary={`x ${articles.occurrences || 1}`} />
+            <Typography variant="body2">
+              ${article.occurrences ? article.occurrences * article.price : article.price}
+            </Typography>
           </ListItem>
         ))}
 
@@ -58,26 +69,38 @@ export default function Review({ formState }) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
+            {SHIPPING}
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>
+            {firstName} {lastName}
+          </Typography>
+          <Typography gutterBottom>
+            {[address1, address2, city, state, zip, country].join(', ')}
+          </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
+            {PAYMENT}
           </Typography>
           <Grid container>
-            {payments.map(payment => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
+            <Grid item xs={6}>
+              <Typography gutterBottom>Card Holder</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{cardName}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Card Number</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{cardNumber}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Expires</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{expDate}</Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

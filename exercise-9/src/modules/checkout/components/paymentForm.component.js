@@ -37,9 +37,8 @@ const INPUTS_CONFIG = {
   },
 };
 
-const initialState = {};
 // eslint-disable-next-line
-export default function PaymentForm({ step, setParentState }) {
+export default function PaymentForm({ step, setParentState, initialState }) {
   const onBlur = useStepperFormChild({ initialState, setParentState, step });
 
   return (
@@ -52,6 +51,7 @@ export default function PaymentForm({ step, setParentState }) {
           <GridTextField
             key={inputName}
             onBlur={onBlur}
+            initialState={initialState[inputName]}
             {...INPUTS_CONFIG[inputName]}
             inputName={inputName}
           />

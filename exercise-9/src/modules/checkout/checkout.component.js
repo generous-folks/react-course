@@ -11,6 +11,7 @@ import AddressForm from './components/addressForm.component';
 import PaymentForm from './components/paymentForm.component';
 import Review from './components/review.component';
 import { useStepperForm } from '../../hooks/useStepperForm.hook';
+import { SHIPPING, PAYMENT, REVIEW, steps } from './checkout.constants';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -43,18 +44,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SHIPPING = 'Shipping address';
-const PAYMENT = 'Payment details';
-const REVIEW = 'Review your order';
-
-const steps = [SHIPPING, PAYMENT, REVIEW];
-
 function getStepContent(step, [formState, setFormState]) {
   switch (step) {
     case SHIPPING:
-      return <AddressForm formKey={SHIPPING} step={step} setParentState={setFormState} />;
+      return (
+        <AddressForm initialState={formState[SHIPPING]} step={step} setParentState={setFormState} />
+      );
     case PAYMENT:
-      return <PaymentForm formKey={SHIPPING} step={step} setParentState={setFormState} />;
+      return (
+        <PaymentForm initialState={formState[PAYMENT]} step={step} setParentState={setFormState} />
+      );
     case REVIEW:
       return (
         <Review

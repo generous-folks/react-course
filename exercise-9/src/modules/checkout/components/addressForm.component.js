@@ -43,10 +43,8 @@ const INPUTS_CONFIG = {
   },
 };
 
-const initialState = {};
-
 // eslint-disable-next-line
-function AddressForm({ step, setParentState }) {
+function AddressForm({ step, setParentState, initialState }) {
   const onBlur = useStepperFormChild({ initialState, setParentState, step });
 
   return (
@@ -59,6 +57,7 @@ function AddressForm({ step, setParentState }) {
           <GridTextField
             key={inputName}
             onBlur={onBlur}
+            initialState={initialState[inputName]}
             {...INPUTS_CONFIG[inputName]}
             inputName={inputName}
           />
