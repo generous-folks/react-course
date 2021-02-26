@@ -25,9 +25,17 @@ exports[`<ArticleCard /> Snapshot should render correctly 1`] = `
       >
         bar
       </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))>
-        1
-      </WithStyles(ForwardRef(Typography))>
+      <div
+        className="makeStyles-cardDescription-4"
+      >
+        <WithStyles(ForwardRef(Typography))>
+          1
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))>
+          1
+           $
+        </WithStyles(ForwardRef(Typography))>
+      </div>
     </WithStyles(ForwardRef(CardContent))>
     <WithStyles(ForwardRef(CardActions))>
       <WithStyles(ForwardRef(Button))

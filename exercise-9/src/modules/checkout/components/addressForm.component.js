@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
+
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useInput } from '../../../hooks/useInput.hook';
+
+import { GridTextField } from '../../../components/gridTextField.component';
+import { useStepperFormChild } from '../../../hooks/useStepperFormChild.hook';
 
 const INPUTS_CONFIG = {
   firstName: {
@@ -35,33 +37,16 @@ const INPUTS_CONFIG = {
     props: { autoComplete: 'shipping postal-code', label: 'Zip code' },
     gridProps: { sm: 6, xs: 12 },
   },
-
   country: {
     props: { autoComplete: 'shipping country', label: 'Country code' },
     gridProps: { xs: 12, sm: 6 },
   },
 };
 
-// eslint-disable-next-line react/prop-types
-export const GridTextField = ({ props, gridProps, inputName }) => {
-  const [value, onChange] = useInput();
-  return (
-    <Grid item {...gridProps}>
-      <TextField
-        required
-        id={inputName}
-        name={inputName}
-        variant="standard"
-        fullWidth
-        {...props}
-        value={value}
-        onChange={onChange}
-      />
-    </Grid>
-  );
-};
+// eslint-disable-next-line
+function AddressForm({ step, setParentState, initialState }) {
+  const onBlur = useStepperFormChild({ initialState, setParentState, step });
 
-export default function AddressForm() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -69,7 +54,13 @@ export default function AddressForm() {
       </Typography>
       <Grid container spacing={3}>
         {Object.keys(INPUTS_CONFIG).map(inputName => (
-          <GridTextField key={inputName} {...INPUTS_CONFIG[inputName]} inputName={inputName} />
+          <GridTextField
+            key={inputName}
+            onBlur={onBlur}
+            initialState={initialState[inputName]}
+            {...INPUTS_CONFIG[inputName]}
+            inputName={inputName}
+          />
         ))}
         <Grid item xs={12}>
           <FormControlLabel
@@ -81,3 +72,5 @@ export default function AddressForm() {
     </React.Fragment>
   );
 }
+
+export default memo(AddressForm);

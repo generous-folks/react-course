@@ -23,10 +23,14 @@ const useStyles = makeStyles({
   cardContent: {
     flexGrow: 1,
   },
+  cardDescription: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
 });
 
 export function ArticleCard({ article }) {
-  const { name, year, image } = article;
+  const { name, year, image, price } = article;
   const classes = useStyles();
 
   return (
@@ -37,7 +41,10 @@ export function ArticleCard({ article }) {
           <Typography gutterBottom variant="h5" component="h2">
             {name}
           </Typography>
-          <Typography>{year}</Typography>
+          <div className={classes.cardDescription}>
+            <Typography>{year}</Typography>
+            <Typography>{price} $</Typography>
+          </div>
         </CardContent>
         <CardActions>
           <Button onClick={() => {}} size="small" color="secondary" variant="outlined">
@@ -59,5 +66,6 @@ ArticleCard.propTypes = {
     id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
   }).isRequired,
 };

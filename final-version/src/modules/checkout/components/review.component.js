@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -6,37 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
-const products = [
-  {
-    name: 'Product 1',
-    desc: 'A nice thing',
-    price: '$9.99',
-  },
-  {
-    name: 'Product 2',
-    desc: 'Another thing',
-    price: '$3.45',
-  },
-  {
-    name: 'Product 3',
-    desc: 'Something else',
-    price: '$6.51',
-  },
-  {
-    name: 'Product 4',
-    desc: 'Best thing of all',
-    price: '$14.11',
-  },
-  { name: 'Shipping', desc: '', price: 'Free' },
-];
-
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
+import { useCart } from '../../cart/cart.context';
+import { PAYMENT, SHIPPING } from '../checkout.constants';
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -49,9 +22,27 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
 }));
+const defaultObject = {};
 
-export default function Review() {
+export const getShippingState = state => {
+  if (!state[SHIPPING]) return defaultObject;
+  return state[SHIPPING];
+};
+
+export const getPaymentState = state => {
+  if (!state[PAYMENT]) return defaultObject;
+  return state[PAYMENT];
+};
+
+export default function Review({ formState }) {
   const classes = useStyles();
+  const [{ articles, total }] = useCart();
+  const { firstName, lastName, address1, address2, city, state, zip, country } = getShippingState(
+    formState,
+  );
+  const { cardName, cardNumber, expDate } = getPaymentState(formState);
+
+  console.log(articles, formState);
 
   return (
     <React.Fragment>
@@ -59,46 +50,64 @@ export default function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {products.map(product => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="body2">{product.price}</Typography>
+        {Object.values(articles).map(article => (
+          <ListItem className={classes.listItem} key={article.name}>
+            <ListItemText primary={article.name} secondary={`x ${articles.occurrences || 1}`} />
+            <Typography variant="body2">
+              ${article.occurrences ? article.occurrences * article.price : article.price}
+            </Typography>
           </ListItem>
         ))}
 
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            ${total}
           </Typography>
         </ListItem>
       </List>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Shipping
+            {SHIPPING}
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>
+            {firstName} {lastName}
+          </Typography>
+          <Typography gutterBottom>
+            {[address1, address2, city, state, zip, country].join(', ')}
+          </Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
-            Payment details
+            {PAYMENT}
           </Typography>
           <Grid container>
-            {payments.map(payment => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
+            <Grid item xs={6}>
+              <Typography gutterBottom>Card Holder</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{cardName}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Card Number</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{cardNumber}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Expires</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{expDate}</Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
     </React.Fragment>
   );
 }
+
+Review.propTypes = {
+  formState: PropTypes.shape({}).isRequired,
+};

@@ -14,6 +14,7 @@ const UserProvider = ({ children }) => {
   const updatedState = user && { user };
   const [state, dispatch] = React.useReducer(userReducer, updatedState || initialState);
   const getState = React.useCallback(() => state, [state]);
+
   return (
     <UserStateContext.Provider value={state}>
       <UserDispatchContext.Provider value={dispatchThunk(dispatch, getState)}>

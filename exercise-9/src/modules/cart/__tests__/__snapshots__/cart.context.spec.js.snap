@@ -5,6 +5,7 @@ exports[`cart.context <CartProvider /> should render nested providers 1`] = `
   value={
     Object {
       "articles": Object {},
+      "total": 0,
     }
   }
 >

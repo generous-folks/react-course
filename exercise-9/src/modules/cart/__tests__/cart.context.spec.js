@@ -26,7 +26,7 @@ describe('cart.context', () => {
           .find('ContextProvider')
           .first()
           .prop('value'),
-      ).toMatchObject({ articles: {} });
+      ).toEqual({ articles: {}, total: 0 });
     });
   });
 

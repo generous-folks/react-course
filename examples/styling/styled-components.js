@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const colors = {
-  primary: "black",
-  secondary: "pink",
-  disabled: "grey"
+  primary: 'black',
+  secondary: 'pink',
+  disabled: 'grey',
 };
 
 // We create a prop selector to reuse styling logic
@@ -34,12 +34,10 @@ const PopUp = styled.div`
   width: 400;
   height: 300;
   margin: 2em;
-  display: ${props => props.visible ? "flex" : "none"};
-  justify-content: "space-around";
+  display: ${props => (props.visible ? 'flex' : 'none')};
+  justify-content: 'space-around';
   flex-direction: row;
-
 `;
-
 
 const Component = ({ shouldDisplayPopup }) => {
   return (
@@ -47,11 +45,11 @@ const Component = ({ shouldDisplayPopup }) => {
       <ButtonBase variant="primary">Do something</ButtonBase>
       <BorderedButton variant="secondary">Do something else</BorderedButton>
     </PopUp>
-  )
-}
+  );
+};
 
 Component.propTypes = {
   shouldDisplayPopup: PropTypes.bool.isRequired,
-}
+};
 
-export default Component
+export default Component;

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 // Props are "properties" set on a jsx element,
 // just like a property with="100" could be set on some html
@@ -13,23 +13,20 @@ import React, { Component } from 'react'
 // const enhancedProps = { ...props, valueToModify: "something" };
 // this.setState({ someStateProperty: { ...props, valueToModify: "something" }});
 
-
-const Hello = props => (<div>Hello {props.name}</div>)
-const DestructuredHello = ({ name }) => (<div>Hello {name}</div>)
+const Hello = props => <div>Hello {props.name}</div>;
+const DestructuredHello = ({ name }) => <div>Hello {name}</div>;
 
 // Same goes for Class components
 class HelloClass extends Component {
   render() {
-    return(
-      <div>Hello {this.props.name}</div>
-    )
+    return <div>Hello {this.props.name}</div>;
   }
 }
 
 // Passing props
 const SomeComponent = () => {
-  const [name, setName] = React.useState("Mark");
-  const someName = "Henry";
+  const [name, setName] = React.useState('Mark');
+  const someName = 'Henry';
 
   return (
     <div>
@@ -37,28 +34,23 @@ const SomeComponent = () => {
       <HelloClass name={name} />
       <DestructuredHello name={someName} />
     </div>
-  )
-}
-
-
-
+  );
+};
 
 class SomeClassComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "Mark" };
-    this.someName = "Luke";
+    this.state = { name: 'Mark' };
+    this.someName = 'Luke';
   }
 
   render() {
-    
     return (
       <div>
         <Hello name="Henry" />
         <HelloClass name={this.someName} />
         <DestructuredHello name={this.state.name} />
       </div>
-    )
+    );
   }
 }
-

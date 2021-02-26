@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { Component, PureComponent } from 'react'
+import React, { Component, PureComponent } from 'react';
 
 // Classic Component with its lifecycles.
 class StatefulComponentClass extends Component {
@@ -23,20 +23,14 @@ class StatefulComponentClass extends Component {
 
   shouldComponentUpdate(prevProps, prevState) {}
 
-  customInstanceMethod = () => {}
+  customInstanceMethod = () => {};
 
   render() {
-
     this.customInstanceMethod();
 
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 }
-
 
 // PureComponents doesn't re-render unless clearly specified in shouldComponentUpdate
 // It often leads to hard debugging but can improve performance.
@@ -63,23 +57,16 @@ class StatefulPureComponentClass extends PureComponent {
 
   shouldComponentUpdate() {}
 
-  customInstanceMethod = () => {}
+  customInstanceMethod = () => {};
 
   render() {
-
     this.customInstanceMethod();
 
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 }
 
-
 class StatelessComponentClass extends Component {
-
   // You can still add Static properties if you'd like
   someCustomField = true;
   // Props are still assigned to this without a constructor
@@ -93,17 +80,12 @@ class StatelessComponentClass extends Component {
 
   shouldComponentUpdate() {}
 
-  customInstanceMethod = () => {}
+  customInstanceMethod = () => {};
 
   render() {
-
     this.customInstanceMethod();
 
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 }
 
@@ -111,10 +93,6 @@ class StatelessComponentClass extends Component {
 // But in this case prefer a functional component !
 class ShortestStatelessComponentClass extends Component {
   render() {
-    return (
-      <div>
-
-      </div>
-    )
+    return <div></div>;
   }
 }

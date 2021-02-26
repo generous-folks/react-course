@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { PowerSettingsNewOutlined } from '@material-ui/icons';
+import PowerSettingsNewOutlined from '@material-ui/icons/PowerSettingsNewOutlined';
 
 import { isUserConnected } from '../modules/user/user.selectors';
 import { useUser } from '../modules/user/user.context';
@@ -50,17 +50,17 @@ export default function NavBar() {
   const [userState, dispatch] = useUser();
   const isConnected = isUserConnected(userState);
 
-  const handleMenu = event => {
+  const handleMenu = React.useCallback(event => {
     setAnchorEl(event.currentTarget);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     setAnchorEl(null);
-  };
+  }, []);
 
-  const logInAndOut = () => {
+  const logInAndOut = React.useCallback(() => {
     dispatch(isConnected ? logout() : login());
-  };
+  }, [dispatch, isConnected]);
 
   return (
     <AppBar position="static">

@@ -45,7 +45,7 @@ describe('<Cart />', () => {
           .find(List)
           .children()
           .map(node => node.prop('to')),
-      ).toEqual(MockedArticles.reduce((acc, curr) => [...acc, `/articles/${curr.id}`], []));
+      ).toEqual(MockedArticles.reduce((acc, curr) => [...acc, `/articles/${curr.slug}`], []));
     });
   });
 });
