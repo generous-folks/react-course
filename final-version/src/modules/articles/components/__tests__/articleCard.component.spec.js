@@ -24,6 +24,7 @@ const article = {
   name: 'bar',
   year: '1',
   image: 'baz',
+  price: 1,
 };
 
 const getWrapper = () => shallow(<ArticleCard article={article} />);
@@ -55,10 +56,19 @@ describe('<ArticleCard />', () => {
       expect(
         wrapper
           .find(CardContent)
+          .find('div')
+          .find(Typography)
+          .first()
+          .text(),
+      ).toBe(article.year);
+      expect(
+        wrapper
+          .find(CardContent)
+          .find('div')
           .find(Typography)
           .last()
           .text(),
-      ).toBe(article.year);
+      ).toBe(`${article.price} $`);
       expect(
         wrapper
           .find(CardActions)

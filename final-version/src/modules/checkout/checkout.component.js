@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './components/addressForm.component';
 import PaymentForm from './components/paymentForm.component';
 import Review from './components/review.component';
+import { useStepperForm } from '../../hooks/useStepperForm.hook';
+import { SHIPPING, PAYMENT, REVIEW, steps } from './checkout.constants';
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -42,24 +44,40 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
-function getStepContent(step) {
+function getStepContent(step, [formState, setFormState]) {
   switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
+    case SHIPPING:
+      return (
+        <AddressForm initialState={formState[SHIPPING]} step={step} setParentState={setFormState} />
+      );
+    case PAYMENT:
+      return (
+        <PaymentForm initialState={formState[PAYMENT]} step={step} setParentState={setFormState} />
+      );
+    case REVIEW:
+      return (
+        <Review
+          formKey={SHIPPING}
+          step={step}
+          formState={formState}
+          setParentState={setFormState}
+        />
+      );
     default:
       throw new Error('Unknown step');
   }
 }
 
-export default function Checkout() {
+export const initialFormState = {
+  [SHIPPING]: {},
+  [PAYMENT]: {},
+  [REVIEW]: {},
+};
+
+function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const stepperForm = useStepperForm(initialFormState);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -95,7 +113,7 @@ export default function Checkout() {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep)}
+              {getStepContent(steps[activeStep], stepperForm)}
               <div className={classes.buttons}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} className={classes.button}>
@@ -103,7 +121,12 @@ export default function Checkout() {
                   </Button>
                 )}
 
-                <Button variant="contained" onClick={handleNext} className={classes.button}>
+                <Button
+                  name={`next-${activeStep}`}
+                  variant="contained"
+                  onClick={handleNext}
+                  className={classes.button}
+                >
                   {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                 </Button>
               </div>
@@ -114,3 +137,5 @@ export default function Checkout() {
     </Container>
   );
 }
+
+export default memo(Checkout);
