@@ -16,7 +16,7 @@ HTML desired output
   <div>
     <h4>bar</h4>
     <ul>
-      <li data-testid="{`}">baz</li>
+      <li>baz</li>
       <li>boz</li>
     </ul>
   </div>

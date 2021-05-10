@@ -4,7 +4,6 @@ This project is meant to be a 3 days long course on React fundamentals, but espe
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Requirements](#requirements)
 - [Introduction](#introduction)
   - [Exercise architecture](#exercise-architecture)
@@ -22,16 +21,16 @@ This project is meant to be a 3 days long course on React fundamentals, but espe
     - [3/ Wrapping pages, building layout with Material-UI](#3-wrapping-pages-building-layout-with-material-ui)
     - [4/ Component composition, modules architecture, understanding responsibility](#4-component-composition-modules-architecture-understanding-responsibility)
     - [5/ Event Driven Design and shared store, the Redux philosophy within React Context](#5-event-driven-design-and-shared-store-the-redux-philosophy-within-react-context)
-    - [6/](#6)
-    - [7/](#7)
-    - [8/](#8)
-    - [9/](#9)
-    - [10/](#10)
+    - [6/ Sharing state between providers and components](#6-sharing-state-between-providers-and-components)
+    - [7/ Providers cold shower, a global state struggle](#7-providers-cold-shower-a-global-state-struggle)
+    - [8/ Custom routing, good practices. Adding checkout](#8-custom-routing-good-practices-adding-checkout)
+    - [9/ Controlled Forms and re-renders](#9-controlled-forms-and-re-renders)
+    - [10/ Migrate to redux](#10-migrate-to-redux)
   - [Ideas for remote groups learning](#ideas-for-remote-groups-learning)
     - [Mob programming](#mob-programming)
     - [Live share on common branch](#live-share-on-common-branch)
 - [My insights](#my-insights)
-- [Resources](#resources)
+- [Resources](#resources)Done in 0.49s.
 
 ## Requirements
 
