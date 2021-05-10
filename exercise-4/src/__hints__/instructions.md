@@ -8,7 +8,14 @@
 
 ## TL;DR
 
+We will do two things here:
+
+- display the articles as Cards
+- move the articles logic from the home page to a dedicated directory
+
 It doesn't feel "react" to have our home page holding the articles **fetching and rendering logic**, after all we may need a list of articles on other pages sometimes ? Let's clean the home page from state, effect and **articles** related jsx, and move it into its own place, something called "**Modules**".
+
+### What are modules
 
 **Modules** are **features**, it holds **business rules**.
 

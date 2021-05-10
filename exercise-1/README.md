@@ -6,12 +6,7 @@
 
 ## TL;DR
 
-Build the JSX: Create a defined markup structure. You need to use those data-testid attributes on the corresponding markup:
-
-- `articles-container`
-- `articles-title`
-- `articles-list`
-- `article-$id`
+Build the JSX: Create a defined markup structure.
 
 HTML desired output
 
@@ -21,7 +16,7 @@ HTML desired output
   <div>
     <h4>bar</h4>
     <ul>
-      <li>baz</li>
+      <li data-testid="{`}">baz</li>
       <li>boz</li>
     </ul>
   </div>
@@ -32,6 +27,6 @@ HTML desired output
 
 ### App.js
 
-- Fetch the articles: use a combination of useState and useEffect to perform the async call and persist the data`,
-- Update the JSX: iterate over the articles using .map to display the item title in the `<li data-test-id article-\$id></li>`
+- Fetch the articles: use a combination of useState and useEffect to perform the async call and persist the data. You can import the asynchronous method **getArticles** from the utils folder.
+- Update the JSX: iterate over the articles using .map to display the item name in the `<li></li>`
 - `yarn test 1`

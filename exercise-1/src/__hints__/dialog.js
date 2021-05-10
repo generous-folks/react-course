@@ -35,6 +35,13 @@ const useStyles = makeStyles(theme => ({
   dialog: {
     maxHeight: 'unset',
     padding: '2em',
+
+    ['& pre > code']: {
+      background: 'inherit',
+    },
+    ['&  code']: {
+      background: 'lightgrey',
+    },
   },
   table: {
     ['& table']: {

@@ -25,8 +25,4 @@ describe('<ContactPage />', () => {
     expect(wrapper.find(Button).prop('component')).toBe(Link);
     expect(wrapper.find(Button).prop('to')).toBe('/');
   });
-
-  it('should contain h2', () => {
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-  });
 });

@@ -35,6 +35,25 @@ const useStyles = makeStyles(theme => ({
   dialog: {
     maxHeight: 'unset',
     padding: '2em',
+
+    ['& pre > code']: {
+      background: 'inherit',
+    },
+    ['&  code']: {
+      background: 'lightgrey',
+    },
+    ['& blockquote']: {
+      boxShadow:
+        '0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%)',
+      borderRadius: '4px',
+      transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      padding: '20px',
+      borderLeft: '5px solid #3f51b5',
+    },
+
+    ['& p']: {
+      lineHeight: '25px',
+    },
   },
   table: {
     ['& table']: {

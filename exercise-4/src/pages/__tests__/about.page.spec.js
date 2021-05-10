@@ -17,10 +17,6 @@ describe('<AboutPage />', () => {
     wrapper = getWrapper();
   });
 
-  it('should render correctly', () => {
-    expect(wrapper).toMatchSnapshot();
-  });
-
   it('should contain Button as Link', () => {
     expect(wrapper.find(Button).prop('component')).toBe(Link);
     expect(wrapper.find(Button).prop('to')).toBe('/');

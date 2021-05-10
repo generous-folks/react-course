@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import App from './App';
+import { ExerciseContainer } from './__hints__/dialog';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 const theme = createMuiTheme({
@@ -11,7 +12,9 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <App />
+    <ExerciseContainer>
+      <App />
+    </ExerciseContainer>
   </ThemeProvider>,
   document.getElementById('root'),
 );
