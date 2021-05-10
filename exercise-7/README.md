@@ -47,7 +47,7 @@ You need to:
 
 - await a call from **signIn** API method with **email** and **password** as parameters to get the user value.
 - Set the user in the localStorage under the key "user"
-- return dispatch the **LOGIN** action
+- return dispatch the **LOGIN** action type
 
 #### logout
 
@@ -60,7 +60,7 @@ You need to:
 - get the user value from the store using the **getUser** selector and **getState**
 - call the **signOut** methods othe the API
 - Remove the user from the localStorage
-- return dispatch the **LOGOUT** action with user as property
+- return dispatch the **LOGOUT** action type with user as property
 
 ### src/modules/user/user.reducer.js
 
@@ -68,11 +68,11 @@ Super dummy reducer !
 
 #### LOGIN
 
-Catch the action **LOGIN** and set user in the state from the **action.user** property
+Catch the action **LOGIN** in a case (switch) and set user in the state from the **action.user** property
 
 #### LOGOUT
 
-Catch the action **LOGOUT** and set user in the state to **null**
+Catch the action in a case (switch) **LOGOUT** and set user in the state to **null**
 
 ### src/modules/user/user.hooks.js
 

@@ -188,23 +188,23 @@ See [instructions](./exercise-4/src/__hints__/instructions.md)
 
 See [instructions](./exercise-5/src/__hints__/instructions.md)
 
-#### 6/
+#### 6/ Sharing state between providers and components
 
 See [instructions](./exercise-6/src/__hints__/instructions.md)
 
-#### 7/
+#### 7/ Providers cold shower, a global state struggle
 
 See [instructions](./exercise-7/src/__hints__/instructions.md)
 
-#### 8/
+#### 8/ Custom routing, good practices. Adding checkout
 
 See [instructions](./exercise-8/src/__hints__/instructions.md)
 
-#### 9/
+#### 9/ Controlled Forms and re-renders
 
 See [instructions](./exercise-9/src/__hints__/instructions.md)
 
-#### 10/
+#### 10/ Migrate to redux
 
 See [instructions](./exercise-10/src/__hints__/instructions.md)
 
