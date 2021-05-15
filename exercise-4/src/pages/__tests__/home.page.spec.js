@@ -25,12 +25,6 @@ beforeEach(() => {
 });
 
 describe('<HomePage />', () => {
-  describe('Snapshot', () => {
-    it('should render correctly', () => {
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
   describe('Markup checks', () => {
     it('should contain the correct markup', () => {
       expect(wrapper.find('Layout').exists()).toBeTruthy();
